@@ -20,7 +20,6 @@ class TodayWeatherView: UIView {
     let weatherStateImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "sun")
         return imageView
     }()
     
@@ -32,7 +31,7 @@ class TodayWeatherView: UIView {
         return label
     }()
     
-    let temperatureAndStateWeatherLabel: UILabel = {
+    let temperatureAndWeatherStateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 24)
@@ -125,7 +124,6 @@ class TodayWeatherView: UIView {
     let compassLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "SE"
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
         return label
@@ -133,25 +131,13 @@ class TodayWeatherView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+    
+        var view = [UIView]()
+        view = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView]
         
-        addSubview(underNavBarColoringImageView)
-        
-        addSubview(weatherStateImageView)
-        addSubview(cityAndCountryLabel)
-        addSubview(temperatureAndStateWeatherLabel)
-        addSubview(separatorView)
-        
-        addSubview(humidityImageView)
-        addSubview(humidityLabel)
-        addSubview(precipitationImageView)
-        addSubview(precipitationLabel)
-        addSubview(pressureImageView)
-        addSubview(pressureLabel)
-        addSubview(windSpeedImageView)
-        addSubview(windSpeedLabel)
-        addSubview(compassImageView)
-        addSubview(compassLabel)
-        addSubview(bottomSeparatorView)
+        for view in view {
+            addSubview(view)
+        }
         
         humidityImageView.addDashedBorder()
         precipitationImageView.addDashedBorder()
@@ -176,13 +162,13 @@ class TodayWeatherView: UIView {
             cityAndCountryLabel.heightAnchor.constraint(equalToConstant: 25),
             cityAndCountryLabel.topAnchor.constraint(equalTo: weatherStateImageView.bottomAnchor, constant: 25),
             
-            temperatureAndStateWeatherLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            temperatureAndStateWeatherLabel.heightAnchor.constraint(equalToConstant: 25),
-            temperatureAndStateWeatherLabel.topAnchor.constraint(equalTo: cityAndCountryLabel.bottomAnchor, constant: 25),
+            temperatureAndWeatherStateLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            temperatureAndWeatherStateLabel.heightAnchor.constraint(equalToConstant: 25),
+            temperatureAndWeatherStateLabel.topAnchor.constraint(equalTo: cityAndCountryLabel.bottomAnchor, constant: 25),
 
             separatorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3),
             separatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            separatorView.topAnchor.constraint(equalTo: temperatureAndStateWeatherLabel.bottomAnchor, constant: 55),
+            separatorView.topAnchor.constraint(equalTo: temperatureAndWeatherStateLabel.bottomAnchor, constant: 55),
             separatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             humidityImageView.widthAnchor.constraint(equalToConstant: 40),
@@ -233,40 +219,4 @@ class TodayWeatherView: UIView {
     }
 }
 
-extension UIView {
-    
-     private static let lineDashPattern: [NSNumber] = [2, 2]
-     private static let lineDashWidth: CGFloat = 1.0
 
-     func makeDashedBorderLine() {
-        
-           let path = CGMutablePath()
-           let shapeLayer = CAShapeLayer()
-           shapeLayer.lineWidth = UIView.lineDashWidth
-           shapeLayer.strokeColor = UIColor.lightGray.cgColor
-           shapeLayer.lineDashPattern = UIView.lineDashPattern
-           path.addLines(between: [CGPoint(x: bounds.minX, y: bounds.height/2),
-                                   CGPoint(x: bounds.maxX, y: bounds.height/2)])
-           shapeLayer.path = path
-           layer.addSublayer(shapeLayer)
-    }
-    
-    func addDashedBorder() {
-        let color = UIColor.red.cgColor
-
-        let shapeLayer:CAShapeLayer = CAShapeLayer()
-        let frameSize = self.frame.size
-        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width+5, height: frameSize.height+5)
-
-        shapeLayer.bounds = shapeRect
-        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = color
-        shapeLayer.lineWidth = 0.5
-        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-        shapeLayer.lineDashPattern = [2,2]
-        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
-
-        self.layer.addSublayer(shapeLayer)
-    }
-}

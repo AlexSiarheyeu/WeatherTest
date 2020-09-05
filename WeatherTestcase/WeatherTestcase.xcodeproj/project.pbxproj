@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC2413982500E19B00723002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413972500E19B00723002 /* AppDelegate.swift */; };
 		BC24139A2500E19B00723002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413992500E19B00723002 /* SceneDelegate.swift */; };
-		BC24139C2500E19B00723002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC24139B2500E19B00723002 /* ViewController.swift */; };
+		BC24139C2500E19B00723002 /* TodayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC24139B2500E19B00723002 /* TodayWeatherViewController.swift */; };
 		BC24139F2500E19B00723002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC24139D2500E19B00723002 /* Main.storyboard */; };
 		BC2413A12500E19D00723002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC2413A02500E19D00723002 /* Assets.xcassets */; };
 		BC2413A42500E19D00723002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC2413A22500E19D00723002 /* LaunchScreen.storyboard */; };
@@ -18,6 +18,12 @@
 		BC2413C82501257100723002 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413C72501257100723002 /* NetworkService.swift */; };
 		BC2413CB2502129C00723002 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413CA2502129C00723002 /* MainTabBarController.swift */; };
 		BC2413CD25021B9800723002 /* TodayWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413CC25021B9800723002 /* TodayWeatherView.swift */; };
+		BC2413CF2503772E00723002 /* UIView + DashedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413CE2503772E00723002 /* UIView + DashedBorder.swift */; };
+		BC2413D2250378E400723002 /* TodayWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413D1250378E400723002 /* TodayWeatherViewModel.swift */; };
+		BC2413D52503903300723002 /* TodayWeatherViewController + LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413D42503903300723002 /* TodayWeatherViewController + LocationDelegate.swift */; };
+		BC2413DE2503E5E200723002 /* ForecarWeatherCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */; };
+		BC2413E02503EA0300723002 /* DayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413DF2503EA0200723002 /* DayHeaderView.swift */; };
+		BC2413E22503ECC000723002 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413E12503ECC000723002 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +40,7 @@
 		BC2413942500E19B00723002 /* WeatherTestcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTestcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2413972500E19B00723002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC2413992500E19B00723002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BC24139B2500E19B00723002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BC24139B2500E19B00723002 /* TodayWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherViewController.swift; sourceTree = "<group>"; };
 		BC24139E2500E19B00723002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC2413A02500E19D00723002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC2413A32500E19D00723002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +52,12 @@
 		BC2413C72501257100723002 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BC2413CA2502129C00723002 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		BC2413CC25021B9800723002 /* TodayWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherView.swift; sourceTree = "<group>"; };
+		BC2413CE2503772E00723002 /* UIView + DashedBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + DashedBorder.swift"; sourceTree = "<group>"; };
+		BC2413D1250378E400723002 /* TodayWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherViewModel.swift; sourceTree = "<group>"; };
+		BC2413D42503903300723002 /* TodayWeatherViewController + LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayWeatherViewController + LocationDelegate.swift"; sourceTree = "<group>"; };
+		BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecarWeatherCollectionViewController.swift; sourceTree = "<group>"; };
+		BC2413DF2503EA0200723002 /* DayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeaderView.swift; sourceTree = "<group>"; };
+		BC2413E12503ECC000723002 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +102,10 @@
 				BC2413972500E19B00723002 /* AppDelegate.swift */,
 				BC2413992500E19B00723002 /* SceneDelegate.swift */,
 				BC2413CA2502129C00723002 /* MainTabBarController.swift */,
-				BC24139B2500E19B00723002 /* ViewController.swift */,
-				BC2413CC25021B9800723002 /* TodayWeatherView.swift */,
+				BC2413D72503E50A00723002 /* Forecast Weather Controller */,
+				BC2413D62503E2CC00723002 /* Today Weather View Controller  */,
 				BC2413C92501257200723002 /* Service Layer */,
-				BC2413C02501033400723002 /* ViewModel */,
-				BC2413B92500FC5300723002 /* Model */,
+				BC2413D02503773A00723002 /* Utils */,
 				BC24139D2500E19B00723002 /* Main.storyboard */,
 				BC2413A02500E19D00723002 /* Assets.xcassets */,
 				BC2413A22500E19D00723002 /* LaunchScreen.storyboard */,
@@ -123,6 +134,7 @@
 		BC2413C02501033400723002 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BC2413D1250378E400723002 /* TodayWeatherViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -133,6 +145,60 @@
 				BC2413C72501257100723002 /* NetworkService.swift */,
 			);
 			path = "Service Layer";
+			sourceTree = "<group>";
+		};
+		BC2413D02503773A00723002 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BC2413CE2503772E00723002 /* UIView + DashedBorder.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BC2413D325038FFB00723002 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC24139B2500E19B00723002 /* TodayWeatherViewController.swift */,
+				BC2413D42503903300723002 /* TodayWeatherViewController + LocationDelegate.swift */,
+				BC2413CC25021B9800723002 /* TodayWeatherView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC2413D62503E2CC00723002 /* Today Weather View Controller  */ = {
+			isa = PBXGroup;
+			children = (
+				BC2413D325038FFB00723002 /* View */,
+				BC2413C02501033400723002 /* ViewModel */,
+				BC2413B92500FC5300723002 /* Model */,
+			);
+			path = "Today Weather View Controller ";
+			sourceTree = "<group>";
+		};
+		BC2413D72503E50A00723002 /* Forecast Weather Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BC2413D92503E52400723002 /* ViewModel */,
+				BC2413D82503E51F00723002 /* View */,
+			);
+			path = "Forecast Weather Controller";
+			sourceTree = "<group>";
+		};
+		BC2413D82503E51F00723002 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */,
+				BC2413DF2503EA0200723002 /* DayHeaderView.swift */,
+				BC2413E12503ECC000723002 /* File.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC2413D92503E52400723002 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,10 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC2413C82501257100723002 /* NetworkService.swift in Sources */,
+				BC2413E02503EA0300723002 /* DayHeaderView.swift in Sources */,
+				BC2413D2250378E400723002 /* TodayWeatherViewModel.swift in Sources */,
+				BC2413DE2503E5E200723002 /* ForecarWeatherCollectionViewController.swift in Sources */,
+				BC2413D52503903300723002 /* TodayWeatherViewController + LocationDelegate.swift in Sources */,
+				BC2413CF2503772E00723002 /* UIView + DashedBorder.swift in Sources */,
 				BC2413C42501224000723002 /* Weather.swift in Sources */,
 				BC2413CB2502129C00723002 /* MainTabBarController.swift in Sources */,
-				BC24139C2500E19B00723002 /* ViewController.swift in Sources */,
+				BC24139C2500E19B00723002 /* TodayWeatherViewController.swift in Sources */,
 				BC2413982500E19B00723002 /* AppDelegate.swift in Sources */,
+				BC2413E22503ECC000723002 /* File.swift in Sources */,
 				BC2413CD25021B9800723002 /* TodayWeatherView.swift in Sources */,
 				BC24139A2500E19B00723002 /* SceneDelegate.swift in Sources */,
 			);

@@ -18,12 +18,12 @@ class MainTabBarController: UITabBarController {
     
     func setupViewControllers() {
     
-        let todayWeatherController = templateNavController(unselectedImage: UIImage(named: "today"), selectedImage: UIImage(named: "today"), rootViewController: ViewController())
+        let todayWeatherController = templateNavController(unselectedImage: UIImage(named: "today"), selectedImage: UIImage(named: "today"), rootViewController: TodayWeatherViewController())
         
         todayWeatherController.title = "Today"
         
         
-        let forecastWeatherController = templateNavController(unselectedImage: UIImage(named: "forecast"), selectedImage: UIImage(named: "forecast"), rootViewController: UIViewController())
+        let forecastWeatherController = templateNavController(unselectedImage: UIImage(named: "forecast"), selectedImage: UIImage(named: "forecast"), rootViewController: ForecarWeatherCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         forecastWeatherController.title = "Forecast"
         
