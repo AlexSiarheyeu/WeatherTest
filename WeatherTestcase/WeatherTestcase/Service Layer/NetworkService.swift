@@ -28,9 +28,7 @@ class NetworkService {
             
             let error = NSError(domain: "", code: 1, userInfo: nil)
             completion(.failure(error))
-            
             return
-            
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -38,13 +36,14 @@ class NetworkService {
             if let error = error {
                 completion(.failure(error))
                 return
-                }
+            }
             
             guard let data = data else { return }
             
             do {
                 let weatherObject = try JSONDecoder().decode(ResultWeather.self, from: data)
                 completion(.success(weatherObject))
+                
             } catch {
                 completion(.failure(error))
             }
@@ -52,4 +51,10 @@ class NetworkService {
         }.resume()
         
     }
+    
+    
+    
+    
 }
+
+

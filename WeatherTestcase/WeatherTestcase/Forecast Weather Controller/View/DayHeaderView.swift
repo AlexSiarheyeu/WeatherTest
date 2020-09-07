@@ -11,21 +11,21 @@ import UIKit
 class DayHeaderView: UICollectionReusableView {
     
     let dayLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Today"
+        let label = UILabel().createLabelWith(title: "  Today", font: .system(18))
+        label.layer.borderWidth = 1
+        label.textAlignment = .left
+        label.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .yellow
-        
+                
         addSubview(dayLabel)
         NSLayoutConstraint.activate([
-            dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
-        
+            dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            dayLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dayLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
         
     }

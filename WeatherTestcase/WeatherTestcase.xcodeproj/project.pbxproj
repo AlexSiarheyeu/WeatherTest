@@ -23,7 +23,11 @@
 		BC2413D52503903300723002 /* TodayWeatherViewController + LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413D42503903300723002 /* TodayWeatherViewController + LocationDelegate.swift */; };
 		BC2413DE2503E5E200723002 /* ForecarWeatherCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */; };
 		BC2413E02503EA0300723002 /* DayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413DF2503EA0200723002 /* DayHeaderView.swift */; };
-		BC2413E22503ECC000723002 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413E12503ECC000723002 /* File.swift */; };
+		BC2413E22503ECC000723002 /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413E12503ECC000723002 /* ForecastCollectionViewCell.swift */; };
+		BC2413E4250536EC00723002 /* ForecastController + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413E3250536EC00723002 /* ForecastController + DataSource.swift */; };
+		BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */; };
+		BC53A24125064E7C00CE4EA5 /* UILabel + customSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A24025064E7C00CE4EA5 /* UILabel + customSettings.swift */; };
+		BC53A243250657F600CE4EA5 /* UIImageView + CustomSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A242250657F600CE4EA5 /* UIImageView + CustomSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +61,11 @@
 		BC2413D42503903300723002 /* TodayWeatherViewController + LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayWeatherViewController + LocationDelegate.swift"; sourceTree = "<group>"; };
 		BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecarWeatherCollectionViewController.swift; sourceTree = "<group>"; };
 		BC2413DF2503EA0200723002 /* DayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeaderView.swift; sourceTree = "<group>"; };
-		BC2413E12503ECC000723002 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		BC2413E12503ECC000723002 /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC2413E3250536EC00723002 /* ForecastController + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastController + DataSource.swift"; sourceTree = "<group>"; };
+		BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherViewModel.swift; sourceTree = "<group>"; };
+		BC53A24025064E7C00CE4EA5 /* UILabel + customSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + customSettings.swift"; sourceTree = "<group>"; };
+		BC53A242250657F600CE4EA5 /* UIImageView + CustomSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + CustomSettings.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				BC2413CE2503772E00723002 /* UIView + DashedBorder.swift */,
+				BC53A24025064E7C00CE4EA5 /* UILabel + customSettings.swift */,
+				BC53A242250657F600CE4EA5 /* UIImageView + CustomSettings.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -188,8 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				BC2413DD2503E5E200723002 /* ForecarWeatherCollectionViewController.swift */,
+				BC2413E3250536EC00723002 /* ForecastController + DataSource.swift */,
 				BC2413DF2503EA0200723002 /* DayHeaderView.swift */,
-				BC2413E12503ECC000723002 /* File.swift */,
+				BC2413E12503ECC000723002 /* ForecastCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +208,7 @@
 		BC2413D92503E52400723002 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -306,15 +318,19 @@
 				BC2413E02503EA0300723002 /* DayHeaderView.swift in Sources */,
 				BC2413D2250378E400723002 /* TodayWeatherViewModel.swift in Sources */,
 				BC2413DE2503E5E200723002 /* ForecarWeatherCollectionViewController.swift in Sources */,
+				BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */,
 				BC2413D52503903300723002 /* TodayWeatherViewController + LocationDelegate.swift in Sources */,
 				BC2413CF2503772E00723002 /* UIView + DashedBorder.swift in Sources */,
 				BC2413C42501224000723002 /* Weather.swift in Sources */,
 				BC2413CB2502129C00723002 /* MainTabBarController.swift in Sources */,
 				BC24139C2500E19B00723002 /* TodayWeatherViewController.swift in Sources */,
 				BC2413982500E19B00723002 /* AppDelegate.swift in Sources */,
-				BC2413E22503ECC000723002 /* File.swift in Sources */,
+				BC2413E22503ECC000723002 /* ForecastCollectionViewCell.swift in Sources */,
+				BC53A24125064E7C00CE4EA5 /* UILabel + customSettings.swift in Sources */,
 				BC2413CD25021B9800723002 /* TodayWeatherView.swift in Sources */,
+				BC53A243250657F600CE4EA5 /* UIImageView + CustomSettings.swift in Sources */,
 				BC24139A2500E19B00723002 /* SceneDelegate.swift in Sources */,
+				BC2413E4250536EC00723002 /* ForecastController + DataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

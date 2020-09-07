@@ -11,9 +11,7 @@ import UIKit
 class TodayWeatherView: UIView {
     
     let underNavBarColoringImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "rainbow")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "rainbow")
         return imageView
     }()
     
@@ -24,19 +22,13 @@ class TodayWeatherView: UIView {
     }()
     
     let cityAndCountryLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(20))
         return label
     }()
     
     let temperatureAndWeatherStateLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textAlignment = .center
-        label.textColor = .systemBlue
+        let label = UILabel().createLabelWith(font: .system(24),
+                                              textColor: .systemBlue)
         return label
     }()
     
@@ -55,77 +47,52 @@ class TodayWeatherView: UIView {
     }()
     
     let humidityImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "humidity")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "humidity")
         return imageView
     }()
     
     let humidityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
     
     let precipitationImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "precipitation")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "precipitation")
         return imageView
     }()
     
     let precipitationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
     
     let pressureImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "celsius")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "celsius")
         return imageView
     }()
     
     let pressureLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
     
     let windSpeedImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "windSpeed")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "windSpeed")
         return imageView
     }()
     
     let windSpeedLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
     
     let compassImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "compass")
+        let imageView = UIImageView().createImageViewWith(imageNamed: "compass")
         return imageView
     }()
     
     let compassLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
+        let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
 
@@ -147,6 +114,7 @@ class TodayWeatherView: UIView {
         
         underNavBarColoringImageView.makeDashedBorderLine()
         
+        
         NSLayoutConstraint.activate([
             
             underNavBarColoringImageView.widthAnchor.constraint(equalTo: widthAnchor),
@@ -156,11 +124,11 @@ class TodayWeatherView: UIView {
             weatherStateImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             weatherStateImageView.widthAnchor.constraint(equalToConstant: 120),
             weatherStateImageView.heightAnchor.constraint(equalToConstant: 120),
-            weatherStateImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 80),
+            weatherStateImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             
             cityAndCountryLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             cityAndCountryLabel.heightAnchor.constraint(equalToConstant: 25),
-            cityAndCountryLabel.topAnchor.constraint(equalTo: weatherStateImageView.bottomAnchor, constant: 25),
+            cityAndCountryLabel.topAnchor.constraint(equalTo: weatherStateImageView.bottomAnchor, constant: 10),
             
             temperatureAndWeatherStateLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             temperatureAndWeatherStateLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -213,10 +181,13 @@ class TodayWeatherView: UIView {
             
             bottomSeparatorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3),
             bottomSeparatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            bottomSeparatorView.topAnchor.constraint(equalTo: compassLabel.bottomAnchor, constant: 55),
+            bottomSeparatorView.topAnchor.constraint(equalTo: compassLabel.bottomAnchor, constant: 35),
             bottomSeparatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
         ])
     }
+    
+   
 }
 
 

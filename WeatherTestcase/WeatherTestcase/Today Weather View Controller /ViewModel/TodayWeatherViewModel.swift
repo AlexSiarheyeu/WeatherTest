@@ -7,61 +7,62 @@
 //
 
 import UIKit
+import CoreLocation
+
+extension Double {
+    func convertToCelsius() -> Double {
+        return (self - 273.15)
+    }
+    
+    func convertMphToKmh() -> Double {
+        return self * 3.6
+    }
+}
 
 enum Condition: String {
     case Clouds, Haze, Rain, Clear, Sun
 }
 
-struct TodayWeatherViewModel {
+class TodayWeatherViewModel {
+
+    var startLocation: CLLocation?
+    var locationManager: CLLocationManager?
     
-    let timezone: String
-    let temperatureAndWeatherState: String
+    var temperatureAndWeatherState: String
     var weatherStateImageView: UIImage = UIImage()
-    let humidity: String
-    let precipitation: String
-    let pressure: String
-    let windSpeed: String
-    let compass: String
+    var humidity: String
+    var precipitation: String
+    var pressure: String
+    var windSpeed: String
+    var compass: String
+    var weather: ResultWeather?
     
     init(weather: ResultWeather) {
-        
-        let city = weather.timezone
-        let newCity = city.components(separatedBy: "/")[1]
-        let newStringCity = newCity.replacingOccurrences(of: "_", with: " ", options: .literal, range: nil)
-        
-        self.timezone = newStringCity
-        
-        let temperature = weather.current.temp
-        let weatherState = weather.current.weather
-        
-        let weatherObject = weatherState[0]
-            
-        let celsiusTemperature = temperature - 273.15
 
-        self.temperatureAndWeatherState = "\(String(format: "%.0f", celsiusTemperature)) ℃ | \(weatherObject.main)"
-
+        let temperature = weather.current.temp.convertToCelsius()
+        let weatherState = weather.current.weather[0]
+        self.temperatureAndWeatherState = "\(String(format: "%.0f", temperature)) ℃ | \(weatherState.main)"
+        
         self.humidity = "\(weather.current.humidity) %"
                     
-        let precipitationMM = weather.minutely
-        let indexPrecipitation = precipitationMM[0]
-        let mmPrecipitation = indexPrecipitation.precipitation
+        let precipitationIndex = weather.minutely[0]
+        let mmPrecipitation = precipitationIndex.precipitation
         let precString = String(format: "%.1f", mmPrecipitation)
         
         self.precipitation = "\(precString) mm"
         self.pressure = "\(weather.current.pressure) hPa"
 
         let windSpeed = weather.current.wind_speed
-        let kmh = windSpeed * 3.6
-        let newSpeed = String(format: "%.1f", kmh)
-        
+        let newSpeed = String(format: "%.1f", windSpeed.convertMphToKmh())
         self.windSpeed = "\(newSpeed) km/h"
         
         self.compass = "SE"
         
-        self.getCondition(weatherObject.main)
+        let weatherObject = weather.current.weather[0].main
+        self.getCondition(weatherObject)
     }
     
-    mutating private func getCondition(_ state: Condition.RawValue) {
+     private func getCondition(_ state: Condition.RawValue) {
         
         switch state{
         
@@ -82,7 +83,7 @@ struct TodayWeatherViewModel {
             self.weatherStateImageView = UIImage(named: "sun")!
             
         default:
-            break
+            self.weatherStateImageView = UIImage(named: "Haze")!
         }
     }
 }

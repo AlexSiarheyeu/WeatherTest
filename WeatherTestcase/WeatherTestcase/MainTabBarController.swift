@@ -10,10 +10,12 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViewControllers()
+        
     }
     
     func setupViewControllers() {
@@ -22,13 +24,15 @@ class MainTabBarController: UITabBarController {
         
         todayWeatherController.title = "Today"
         
-        
         let forecastWeatherController = templateNavController(unselectedImage: UIImage(named: "forecast"), selectedImage: UIImage(named: "forecast"), rootViewController: ForecarWeatherCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         forecastWeatherController.title = "Forecast"
         
         viewControllers = [todayWeatherController, forecastWeatherController]
+        
+        
     }
+    
 
     private func templateNavController(unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
 
@@ -38,5 +42,4 @@ class MainTabBarController: UITabBarController {
             navController.tabBarItem.selectedImage = selectedImage
             return navController
 }
-    
 }
