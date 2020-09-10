@@ -19,8 +19,9 @@ class MainTabBarController: UITabBarController {
     }
     
     func setupViewControllers() {
-    
-        let todayWeatherController = templateNavController(unselectedImage: UIImage(named: "today"), selectedImage: UIImage(named: "today"), rootViewController: TodayWeatherViewController())
+        let service = NetworkService()
+        let viewModel = TodayWeatherViewModel(networkService: service)
+        let todayWeatherController = templateNavController(unselectedImage: UIImage(named: "today"), selectedImage: UIImage(named: "today"), rootViewController: TodayWeatherViewController(viewModel: viewModel))
         
         todayWeatherController.title = "Today"
         

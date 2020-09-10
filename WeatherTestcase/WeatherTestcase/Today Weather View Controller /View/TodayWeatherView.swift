@@ -9,6 +9,11 @@
 import UIKit
 
 class TodayWeatherView: UIView {
+ 
+    override init(frame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)) {
+        super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
     
     let underNavBarColoringImageView: UIImageView = {
         let imageView = UIImageView().createImageViewWith(imageNamed: "rainbow")
@@ -95,12 +100,21 @@ class TodayWeatherView: UIView {
         let label = UILabel().createLabelWith(font: .system(16))
         return label
     }()
+    
+    let shareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Share", for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        return button
+    }()
 
     override func layoutSubviews() {
         super.layoutSubviews()
     
         var view = [UIView]()
-        view = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView]
+        view = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView, shareButton]
         
         for view in view {
             addSubview(view)
@@ -162,7 +176,7 @@ class TodayWeatherView: UIView {
             
             pressureLabel.topAnchor.constraint(equalTo: pressureImageView.bottomAnchor, constant: 10),
             pressureLabel.centerXAnchor.constraint(equalTo: pressureImageView.centerXAnchor),
-            
+
             windSpeedImageView.widthAnchor.constraint(equalToConstant: 40),
             windSpeedImageView.heightAnchor.constraint(equalToConstant: 40),
             windSpeedImageView.topAnchor.constraint(equalTo: precipitationImageView.bottomAnchor, constant: 65),
@@ -178,16 +192,20 @@ class TodayWeatherView: UIView {
             
             compassLabel.topAnchor.constraint(equalTo: compassImageView.bottomAnchor, constant: 10),
             compassLabel.centerXAnchor.constraint(equalTo: compassImageView.centerXAnchor),
-            
+            compassLabel.heightAnchor.constraint(equalToConstant: 15),
+
             bottomSeparatorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3),
             bottomSeparatorView.heightAnchor.constraint(equalToConstant: 0.5),
             bottomSeparatorView.topAnchor.constraint(equalTo: compassLabel.bottomAnchor, constant: 35),
             bottomSeparatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
+            shareButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            shareButton.topAnchor.constraint(equalTo: bottomSeparatorView.bottomAnchor),
+            shareButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
-   
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
-
-

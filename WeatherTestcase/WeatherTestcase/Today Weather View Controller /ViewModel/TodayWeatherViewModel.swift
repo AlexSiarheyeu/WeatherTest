@@ -9,82 +9,105 @@
 import UIKit
 import CoreLocation
 
-extension Double {
-    func convertToCelsius() -> Double {
-        return (self - 273.15)
-    }
-    
-    func convertMphToKmh() -> Double {
-        return self * 3.6
-    }
-}
-
 enum Condition: String {
     case Clouds, Haze, Rain, Clear, Sun
 }
 
 class TodayWeatherViewModel {
 
-    var startLocation: CLLocation?
-    var locationManager: CLLocationManager?
-    
-    var temperatureAndWeatherState: String
-    var weatherStateImageView: UIImage = UIImage()
-    var humidity: String
-    var precipitation: String
-    var pressure: String
-    var windSpeed: String
-    var compass: String
     var weather: ResultWeather?
+    var networkService: NetworkService
     
-    init(weather: ResultWeather) {
-
-        let temperature = weather.current.temp.convertToCelsius()
-        let weatherState = weather.current.weather[0]
-        self.temperatureAndWeatherState = "\(String(format: "%.0f", temperature)) ℃ | \(weatherState.main)"
-        
-        self.humidity = "\(weather.current.humidity) %"
-                    
-        let precipitationIndex = weather.minutely[0]
-        let mmPrecipitation = precipitationIndex.precipitation
-        let precString = String(format: "%.1f", mmPrecipitation)
-        
-        self.precipitation = "\(precString) mm"
-        self.pressure = "\(weather.current.pressure) hPa"
-
-        let windSpeed = weather.current.wind_speed
-        let newSpeed = String(format: "%.1f", windSpeed.convertMphToKmh())
-        self.windSpeed = "\(newSpeed) km/h"
-        
-        self.compass = "SE"
-        
-        let weatherObject = weather.current.weather[0].main
-        self.getCondition(weatherObject)
+    init(networkService: NetworkService) {
+        self.networkService = networkService
     }
     
-     private func getCondition(_ state: Condition.RawValue) {
-        
-        switch state{
-        
-        case Condition.Clouds.rawValue:
-            self.weatherStateImageView = UIImage(named: "Clouds")!
-            
-        case Condition.Haze.rawValue:
-             let image = UIImage(named: "Haze")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-            self.weatherStateImageView = image!
-            
-        case Condition.Rain.rawValue:
-            self.weatherStateImageView = UIImage(named: "Rain")!
-            
-        case Condition.Clear.rawValue:
-            self.weatherStateImageView = UIImage(named: "ClearSky")!
-            
-        case Condition.Sun.rawValue:
-            self.weatherStateImageView = UIImage(named: "sun")!
-            
-        default:
-            self.weatherStateImageView = UIImage(named: "Haze")!
+    var temperatureAndWeatherState: String {
+        guard let temperature = weather?.current.temp.convertToCelsius() else { return ""}
+        guard let weatherState = weather?.current.weather[0] else { return ""}
+        return "\(String(format: "%.0f", temperature)) ℃ | \(weatherState.main)"
+    }
+    
+    var humidity: String {
+        guard let hum = weather?.current.humidity else { return ""}
+        return "\(hum) %"
+    }
+    
+    var precipitation: String {
+        let precipitationIndex = weather?.minutely[0]
+        guard let mmPrecipitation = precipitationIndex?.precipitation else {return ""}
+        let precString = String(format: "%.1f", mmPrecipitation)
+        return "\(precString) mm"
+    }
+    
+    var pressure: String {
+        guard let hpa = weather?.current.pressure else { return ""}
+        return "\(hpa) hPa"
+    }
+    
+    var windSpeed: String {
+        let windSpeed = weather?.current.wind_speed
+        guard let kmh = windSpeed?.convertMphToKmh() else {return ""}
+        let newSpeed = String(format: "%.1f", kmh)
+        return "\(newSpeed) km/h"
+    }
+    
+    var compass: String {
+        return "SE"
+    }
+    
+    var weatherStateImageView: UIImage  {
+        guard let weatherObject = weather?.current.weather[0].main else {return UIImage()}
+        return UIImage.weatherIcon(of: weatherObject) ?? UIImage()
+    }
+    
+    func getWeatherAt(lat: Double, lon: Double, completion: @escaping ()->()) {
+           
+        NetworkService.shared.getWeather(lat: lat, lon: lon) { (result) in
+           
+            switch result {
+            case .success(let weather):
+                self.weather = weather
+                print(weather)
+                completion()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         }
     }
-}
+
+    
+        
+
+//
+//        let weatherObject = weather.current.weather[0].main
+//        self.getCondition(weatherObject)
+    
+    
+//     private func getCondition(_ state: Condition.RawValue) {
+//
+//        switch state{
+//
+//        case Condition.Clouds.rawValue:
+//            self.weatherStateImageView = UIImage(named: "Clouds")!
+//
+//        case Condition.Haze.rawValue:
+//             let image = UIImage(named: "Haze")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+//            self.weatherStateImageView = image!
+//
+//        case Condition.Rain.rawValue:
+//            self.weatherStateImageView = UIImage(named: "Rain")!
+//
+//        case Condition.Clear.rawValue:
+//            self.weatherStateImageView = UIImage(named: "ClearSky")!
+//
+//        case Condition.Sun.rawValue:
+//            self.weatherStateImageView = UIImage(named: "sun")!
+//
+//        default:
+//            self.weatherStateImageView = UIImage(named: "Haze")!
+//        }
+   // }
+
 
