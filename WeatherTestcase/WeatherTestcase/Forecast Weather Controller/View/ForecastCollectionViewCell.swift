@@ -74,7 +74,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        
         ])
     }
     

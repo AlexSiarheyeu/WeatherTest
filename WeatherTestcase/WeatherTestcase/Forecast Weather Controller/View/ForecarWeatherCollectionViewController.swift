@@ -14,6 +14,11 @@ let headerId = "header"
 
 class ForecarWeatherCollectionViewController: UICollectionViewController {
 
+    let underNavBarColoringImageView: UIImageView = {
+        let imageView = UIImageView().createImageViewWith(imageNamed: "rainbow")
+        return imageView
+    }()
+    
     var forecastViewModel: ForecastWeatherViewModel? {
         didSet {
             DispatchQueue.main.async {
@@ -24,6 +29,14 @@ class ForecarWeatherCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(underNavBarColoringImageView)
+
+        NSLayoutConstraint.activate([
+            underNavBarColoringImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            underNavBarColoringImageView.heightAnchor.constraint(equalToConstant: 2),
+            underNavBarColoringImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ])
+
         collectionView.backgroundColor = .white
         self.collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         

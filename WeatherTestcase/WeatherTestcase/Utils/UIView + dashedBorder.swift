@@ -30,7 +30,7 @@ extension UIView {
         
         let color = UIColor.red.cgColor
 
-        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let shapeLayer: CAShapeLayer = CAShapeLayer()
         let frameSize = self.frame.size
         let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width+5, height: frameSize.height+5)
 
