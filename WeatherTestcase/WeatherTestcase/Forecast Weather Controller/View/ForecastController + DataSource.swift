@@ -11,7 +11,7 @@ import UIKit
 extension ForecarWeatherCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let vm = forecastViewModel else {return 2}
+       
         return 0
     }
 

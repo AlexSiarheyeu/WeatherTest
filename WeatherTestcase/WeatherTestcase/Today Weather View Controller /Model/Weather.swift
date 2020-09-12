@@ -13,7 +13,6 @@ struct ResultWeather: Codable {
     let current: Current
     var hourly: [Hourly]
     var daily: [Daily]
-    var minutely: [Minutely]
 }
 
 struct Current: Codable {
@@ -39,11 +38,6 @@ struct Hourly: Codable {
     let humidity: Int
     let wind_speed: Double
     let weather: [Weather]
-}
-
-struct Minutely: Codable {
-    let dt: Int
-    let precipitation: Double
 }
 
 struct Daily: Codable {

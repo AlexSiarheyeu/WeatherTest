@@ -113,12 +113,10 @@ class TodayWeatherView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
     
-        var view = [UIView]()
-        view = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView, shareButton]
+       
+        let views = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView, shareButton]
         
-        for view in view {
-            addSubview(view)
-        }
+        views.forEach { addSubview($0) }
         
         humidityImageView.addDashedBorder()
         precipitationImageView.addDashedBorder()
@@ -127,7 +125,6 @@ class TodayWeatherView: UIView {
         compassImageView.addDashedBorder()
         
         underNavBarColoringImageView.makeDashedBorderLine()
-        
         
         NSLayoutConstraint.activate([
             

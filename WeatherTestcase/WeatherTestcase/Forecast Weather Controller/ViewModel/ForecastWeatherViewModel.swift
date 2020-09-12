@@ -10,13 +10,5 @@ import UIKit
 
 struct ForecastWeatherViewModel  {
     
-    var numberOfSections: Int
-    
-    init(weather: ResultWeather) {
-        
-        self.numberOfSections = weather.daily.count
-        
-        
-    }
-    
+ //TODO
 }
