@@ -78,36 +78,6 @@ class TodayWeatherViewModel {
     }
 
     
-        
 
-//
-//        let weatherObject = weather.current.weather[0].main
-//        self.getCondition(weatherObject)
-    
-    
-//     private func getCondition(_ state: Condition.RawValue) {
-//
-//        switch state{
-//
-//        case Condition.Clouds.rawValue:
-//            self.weatherStateImageView = UIImage(named: "Clouds")!
-//
-//        case Condition.Haze.rawValue:
-//             let image = UIImage(named: "Haze")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-//            self.weatherStateImageView = image!
-//
-//        case Condition.Rain.rawValue:
-//            self.weatherStateImageView = UIImage(named: "Rain")!
-//
-//        case Condition.Clear.rawValue:
-//            self.weatherStateImageView = UIImage(named: "ClearSky")!
-//
-//        case Condition.Sun.rawValue:
-//            self.weatherStateImageView = UIImage(named: "sun")!
-//
-//        default:
-//            self.weatherStateImageView = UIImage(named: "Haze")!
-//        }
-   // }
 
 
