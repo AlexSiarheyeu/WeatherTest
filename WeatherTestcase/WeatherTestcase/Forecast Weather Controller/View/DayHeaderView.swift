@@ -11,10 +11,12 @@ import UIKit
 class DayHeaderView: UICollectionReusableView {
     
     let dayLabel: UILabel = {
-        let label = UILabel().createLabelWith(title: "  Today", font: .system(18))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18)
         label.layer.borderWidth = 1
         label.textAlignment = .left
         label.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     

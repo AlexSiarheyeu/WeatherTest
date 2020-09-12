@@ -28,11 +28,11 @@ extension UIView {
     
      func addDashedBorder() {
         
-        let color = UIColor.red.cgColor
-
-        let shapeLayer: CAShapeLayer = CAShapeLayer()
-        let frameSize = self.frame.size
-        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width+5, height: frameSize.height+5)
+        let color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1).cgColor
+        let shapeLayer = CAShapeLayer()
+        let frameSize = frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width + 5,
+                                           height: frameSize.height + 5)
 
         shapeLayer.bounds = shapeRect
         shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)

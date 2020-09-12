@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct ResultWeather: Codable {
+struct ResultWeather: Decodable {
     let timezone: String
     let current: Current
     var hourly: [Hourly]
     var daily: [Daily]
 }
 
-struct Current: Codable {
+struct Current: Decodable {
     let dt: Int
     let temp: Double
     let pressure: Int
@@ -24,14 +24,14 @@ struct Current: Codable {
     let weather: [Weather]
 }
 
-struct Weather: Codable {
+struct Weather: Decodable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct Hourly: Codable {
+struct Hourly: Decodable {
     let dt: Int
     let temp: Double
     let pressure: Int
@@ -40,7 +40,7 @@ struct Hourly: Codable {
     let weather: [Weather]
 }
 
-struct Daily: Codable {
+struct Daily: Decodable {
     let dt: Int
     let pressure: Int
     let humidity: Int

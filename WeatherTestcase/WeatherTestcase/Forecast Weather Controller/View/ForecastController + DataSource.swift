@@ -8,11 +8,11 @@
 
 import UIKit
 
-extension ForecarWeatherCollectionViewController {
+extension ForecastWeatherCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
        
-        return 0
+        return 3
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,13 +21,13 @@ extension ForecarWeatherCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ForecastCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastWeatherCollectionViewController.cellId, for: indexPath) as! ForecastCollectionViewCell
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId, for: indexPath)
          return header
      }
     
@@ -36,7 +36,7 @@ extension ForecarWeatherCollectionViewController {
     }
 }
     
-extension ForecarWeatherCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension ForecastWeatherCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
                 return CGSize(width: view.frame.width, height: 70)

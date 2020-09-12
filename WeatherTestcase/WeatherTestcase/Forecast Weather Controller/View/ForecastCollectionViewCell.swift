@@ -25,21 +25,24 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     }()
     
     let timeLabel: UILabel = {
-        let label = UILabel().createLabelWith(title: "13:00",
-                                              font: .system(20))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let weatherStateLabel: UILabel = {
-        let label = UILabel().createLabelWith(title: "Clear",
-                                              font: .system(18))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
   
     let temperatureLabel: UILabel = {
-        let label = UILabel().createLabelWith(title: "22 C",
-                                              font: .bold(32),
-                                              textColor: .systemBlue)
+        let label = UILabel()
+        label.textColor = .systemBlue
+        label.font = .boldSystemFont(ofSize: 32)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -47,12 +50,9 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        addSubview(weatherStateLabel)
-        addSubview(weatherStateImageView)
-        addSubview(timeLabel)
-        addSubview(temperatureLabel)
-        addSubview(separatorView)
+        
+        let views = [weatherStateLabel, weatherStateImageView, timeLabel, temperatureLabel, separatorView]
+        views.forEach { addSubview($0) }
         
         NSLayoutConstraint.activate([
             weatherStateImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

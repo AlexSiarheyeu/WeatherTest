@@ -9,11 +9,11 @@
 import Foundation
 
 extension Double {
-    func convertToCelsius() -> Double {
+    func toCelsius() -> Double {
         return (self - 273.15)
     }
     
-    func convertMphToKmh() -> Double {
+    func toKmh() -> Double {
         return self * 3.6
     }
 }

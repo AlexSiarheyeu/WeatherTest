@@ -16,7 +16,9 @@ class TodayWeatherView: UIView {
     }
     
     let underNavBarColoringImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "rainbow")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "rainbow")
         return imageView
     }()
     
@@ -27,13 +29,17 @@ class TodayWeatherView: UIView {
     }()
     
     let cityAndCountryLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(20))
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
     let temperatureAndWeatherStateLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(24),
-                                              textColor: .systemBlue)
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 24)
+        label.textColor = .systemBlue
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -52,52 +58,72 @@ class TodayWeatherView: UIView {
     }()
     
     let humidityImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "humidity")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "humidity")
         return imageView
     }()
     
     let humidityLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(16))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let precipitationImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "precipitation")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "precipitation")
         return imageView
     }()
     
     let precipitationLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(16))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let pressureImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "celsius")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "celsius")
         return imageView
     }()
     
     let pressureLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(16))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let windSpeedImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "windSpeed")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "windSpeed")
         return imageView
     }()
     
     let windSpeedLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(16))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let compassImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "compass")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "compass")
         return imageView
     }()
     
     let compassLabel: UILabel = {
-        let label = UILabel().createLabelWith(font: .system(16))
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -106,7 +132,7 @@ class TodayWeatherView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Share", for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.titleLabel?.font = .systemFont(ofSize: 22)
         return button
     }()
 

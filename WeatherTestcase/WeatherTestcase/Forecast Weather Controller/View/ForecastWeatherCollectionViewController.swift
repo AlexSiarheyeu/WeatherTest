@@ -9,13 +9,17 @@
 import UIKit
 import CoreLocation
 
-let cellId = "cell"
-let headerId = "header"
+extension ForecastWeatherCollectionViewController {
+    static let cellId = "cell"
+    static let headerId = "header"
+}
 
-class ForecarWeatherCollectionViewController: UICollectionViewController {
+class ForecastWeatherCollectionViewController: UICollectionViewController {
 
     let underNavBarColoringImageView: UIImageView = {
-        let imageView = UIImageView().createImageViewWith(imageNamed: "rainbow")
+        let imageView = UIImageView() 
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = #imageLiteral(resourceName: "rainbow")
         return imageView
     }()
     
@@ -38,8 +42,8 @@ class ForecarWeatherCollectionViewController: UICollectionViewController {
         ])
 
         collectionView.backgroundColor = .white
-        self.collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        self.collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastWeatherCollectionViewController.cellId)
         
-        self.collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        self.collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId)
     }
 }

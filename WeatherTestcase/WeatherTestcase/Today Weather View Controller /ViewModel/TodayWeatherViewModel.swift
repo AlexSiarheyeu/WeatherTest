@@ -23,7 +23,7 @@ class TodayWeatherViewModel {
     }
     
     var temperatureAndWeatherState: String {
-        guard let temperature = weather?.current.temp.convertToCelsius() else { return ""}
+        guard let temperature = weather?.current.temp.toCelsius() else { return ""}
         guard let weatherState = weather?.current.weather[0] else { return ""}
         return "\(String(format: "%.0f", temperature)) ℃ | \(weatherState.main)"
     }
@@ -34,10 +34,7 @@ class TodayWeatherViewModel {
     }
     
     var precipitation: String {
-        let precipitationIndex = weather?.minutely[0]
-        guard let mmPrecipitation = precipitationIndex?.precipitation else {return ""}
-        let precString = String(format: "%.1f", mmPrecipitation)
-        return "\(precString) mm"
+        return "\(1000) mm"
     }
     
     var pressure: String {
@@ -47,7 +44,7 @@ class TodayWeatherViewModel {
     
     var windSpeed: String {
         let windSpeed = weather?.current.wind_speed
-        guard let kmh = windSpeed?.convertMphToKmh() else {return ""}
+        guard let kmh = windSpeed?.toKmh() else {return ""}
         let newSpeed = String(format: "%.1f", kmh)
         return "\(newSpeed) km/h"
     }
