@@ -9,13 +9,11 @@
 import UIKit
 import CoreLocation
 
-enum Condition: String {
-    case Clouds, Haze, Rain, Clear, Sun
-}
+var weatherstatic: ResultWeather?
 
 class TodayWeatherViewModel {
 
-    var weather: ResultWeather?
+   
     var networkService: NetworkService
     
     init(networkService: NetworkService) {
@@ -23,13 +21,13 @@ class TodayWeatherViewModel {
     }
     
     var temperatureAndWeatherState: String {
-        guard let temperature = weather?.current.temp.toCelsius() else { return ""}
-        guard let weatherState = weather?.current.weather[0] else { return ""}
+        guard let temperature = weatherstatic?.current.temp.toCelsius() else { return ""}
+        guard let weatherState = weatherstatic?.current.weather[0] else { return ""}
         return "\(String(format: "%.0f", temperature)) ℃ | \(weatherState.main)"
     }
     
     var humidity: String {
-        guard let hum = weather?.current.humidity else { return ""}
+        guard let hum = weatherstatic?.current.humidity else { return ""}
         return "\(hum) %"
     }
     
@@ -38,12 +36,12 @@ class TodayWeatherViewModel {
     }
     
     var pressure: String {
-        guard let hpa = weather?.current.pressure else { return ""}
+        guard let hpa = weatherstatic?.current.pressure else { return ""}
         return "\(hpa) hPa"
     }
     
     var windSpeed: String {
-        let windSpeed = weather?.current.wind_speed
+        let windSpeed = weatherstatic?.current.wind_speed
         guard let kmh = windSpeed?.toKmh() else {return ""}
         let newSpeed = String(format: "%.1f", kmh)
         return "\(newSpeed) km/h"
@@ -54,7 +52,7 @@ class TodayWeatherViewModel {
     }
     
     var weatherStateImageView: UIImage  {
-        guard let weatherObject = weather?.current.weather[0].main else {return UIImage()}
+        guard let weatherObject = weatherstatic?.current.weather[0].main else {return UIImage()}
         return UIImage.weatherIcon(of: weatherObject) ?? UIImage()
     }
     
@@ -64,8 +62,7 @@ class TodayWeatherViewModel {
            
             switch result {
             case .success(let weather):
-                self.weather = weather
-                print(weather)
+                weatherstatic = weather
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

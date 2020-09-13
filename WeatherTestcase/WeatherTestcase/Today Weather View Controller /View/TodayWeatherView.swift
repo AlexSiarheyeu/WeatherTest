@@ -135,12 +135,24 @@ class TodayWeatherView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 22)
         return button
     }()
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .systemBlue
+        return indicator
+    }()
 
     override func layoutSubviews() {
         super.layoutSubviews()
-    
        
-        let views = [underNavBarColoringImageView, weatherStateImageView, cityAndCountryLabel, temperatureAndWeatherStateLabel, separatorView, humidityImageView, humidityLabel, precipitationImageView, precipitationLabel, pressureImageView, pressureLabel, windSpeedImageView, windSpeedLabel, compassImageView, compassLabel, bottomSeparatorView, shareButton]
+        let views = [underNavBarColoringImageView, weatherStateImageView,
+                     cityAndCountryLabel, temperatureAndWeatherStateLabel,
+                     separatorView, humidityImageView, humidityLabel,
+                     precipitationImageView, precipitationLabel,
+                     pressureImageView, pressureLabel, windSpeedImageView,
+                     windSpeedLabel, compassImageView, compassLabel,
+                     bottomSeparatorView, shareButton, activityIndicator]
         
         views.forEach { addSubview($0) }
         
@@ -225,6 +237,10 @@ class TodayWeatherView: UIView {
             shareButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             shareButton.topAnchor.constraint(equalTo: bottomSeparatorView.bottomAnchor),
             shareButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: temperatureAndWeatherStateLabel.bottomAnchor, constant: 10),
+            activityIndicator.bottomAnchor.constraint(equalTo: separatorView.topAnchor),
         ])
     }
     

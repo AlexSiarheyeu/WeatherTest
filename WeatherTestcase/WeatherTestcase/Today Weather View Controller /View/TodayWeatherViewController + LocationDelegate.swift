@@ -15,9 +15,9 @@ extension TodayWeatherViewController: CLLocationManagerDelegate {
        locationManager = CLLocationManager()
        locationManager?.delegate = self
        locationManager?.requestLocation()
-       if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+       if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+          CLLocationManager.authorizationStatus() == .authorizedAlways {
            startLocation = locationManager?.location
-           
        }
     }
 
@@ -26,6 +26,8 @@ extension TodayWeatherViewController: CLLocationManagerDelegate {
        if let location = locations.first {
            startLocation = location
        }
+        todayWeatherView.activityIndicator.startAnimating()
+
     }
        
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

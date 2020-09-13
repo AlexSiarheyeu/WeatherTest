@@ -24,6 +24,11 @@ struct Current: Decodable {
     let weather: [Weather]
 }
 
+struct Minutely: Decodable {
+    var dt: Int
+    var precipitation: Int
+}
+
 struct Weather: Decodable {
     let id: Int
     let main: String

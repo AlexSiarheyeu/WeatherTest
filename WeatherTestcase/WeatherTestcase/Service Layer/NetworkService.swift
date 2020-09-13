@@ -9,17 +9,19 @@
 import Foundation
 import CoreLocation
 
+class API {
+    static let apiKey = "57fdd698fcaed1770a436586c9c81811"
+    static let basicURL = "https://api.openweathermap.org/data/2.5"
+}
+
 class NetworkService {
     
     static let shared = NetworkService()
     
-    let apiKey = "57fdd698fcaed1770a436586c9c81811"
-    let basicURL = "https://api.openweathermap.org/data/2.5"
-
     func getURL(latitude: Double, longitude: Double) -> String {
         
-        let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&appid=" + apiKey
-        return basicURL + oneCallAPI
+        let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&appid=" + API.apiKey
+        return API.basicURL + oneCallAPI
     }
 
     func getWeather(lat: Double, lon: Double, completion: @escaping (Result<ResultWeather, Error>) -> ()) {
@@ -43,7 +45,8 @@ class NetworkService {
             do {
                 let weatherObject = try JSONDecoder().decode(ResultWeather.self, from: data)
                 completion(.success(weatherObject))
-                
+                print()
+                //print(weatherObject.daily[2...5])
             } catch {
                 completion(.failure(error))
             }

@@ -14,7 +14,6 @@ class TodayWeatherViewController: UIViewController {
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
     let weatherResultViewModel: TodayWeatherViewModel?
-    let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     var startLocation: CLLocation? {
         didSet {
@@ -32,15 +31,6 @@ class TodayWeatherViewController: UIViewController {
        super.viewDidLoad()
         startLocation = CLLocation()
     
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndicator.bottomAnchor.constraint(equalTo: view.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
-    
-        activityIndicator.startAnimating()
-        
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -63,6 +53,9 @@ class TodayWeatherViewController: UIViewController {
      func setupInternalViewForMainView() {
 
         todayWeatherView = TodayWeatherView()
+        
+      
+        
         view.addSubview(todayWeatherView)
         
         NSLayoutConstraint.activate([
@@ -82,32 +75,31 @@ class TodayWeatherViewController: UIViewController {
         
         weatherResultViewModel?.getWeatherAt(lat: lat, lon: lon, completion: { [weak self] in
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 
-                self?.todayWeatherView.temperatureAndWeatherStateLabel.text =
-                self?.weatherResultViewModel?.temperatureAndWeatherState
-                
-                self?.todayWeatherView.humidityLabel.text =
-                self?.weatherResultViewModel?.humidity
+               self?.todayWeatherView.temperatureAndWeatherStateLabel.text =
+               self?.weatherResultViewModel?.temperatureAndWeatherState
+               
+               self?.todayWeatherView.humidityLabel.text =
+               self?.weatherResultViewModel?.humidity
 
-                self?.todayWeatherView.weatherStateImageView.image =
-                self?.weatherResultViewModel?.weatherStateImageView
+               self?.todayWeatherView.weatherStateImageView.image =
+               self?.weatherResultViewModel?.weatherStateImageView
 
-                self?.todayWeatherView.precipitationLabel.text = 
-                self?.weatherResultViewModel?.precipitation
+               self?.todayWeatherView.precipitationLabel.text =
+               self?.weatherResultViewModel?.precipitation
 
-                self?.todayWeatherView.pressureLabel.text =
-                self?.weatherResultViewModel?.pressure
+               self?.todayWeatherView.pressureLabel.text =
+               self?.weatherResultViewModel?.pressure
 
-                self?.todayWeatherView.windSpeedLabel.text =
-                self?.weatherResultViewModel?.windSpeed
+               self?.todayWeatherView.windSpeedLabel.text =
+               self?.weatherResultViewModel?.windSpeed
 
-                self?.todayWeatherView.compassLabel.text =
-                self?.weatherResultViewModel?.compass
-                self?.activityIndicator.stopAnimating()
-            }
+               self?.todayWeatherView.compassLabel.text =
+               self?.weatherResultViewModel?.compass
+                self?.todayWeatherView.activityIndicator.stopAnimating()
+            })
         })
-        
      }
 
     required init?(coder: NSCoder) {
