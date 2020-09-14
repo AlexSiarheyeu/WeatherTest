@@ -14,29 +14,30 @@ class API {
     static let basicURL = "https://api.openweathermap.org/data/2.5"
 }
 
+enum DataManagerError: Error {
+    case failedRequest
+    case invalidResponse
+    case unknown
+}
+
 class NetworkService {
     
     static let shared = NetworkService()
     
     func getURL(latitude: Double, longitude: Double) -> String {
         
-        let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&appid=" + API.apiKey
+        let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&exclude=minutely" + "&appid=" + API.apiKey
         return API.basicURL + oneCallAPI
     }
 
-    func getWeather(lat: Double, lon: Double, completion: @escaping (Result<ResultWeather, Error>) -> ()) {
+    func getWeather(lat: Double, lon: Double, completion: @escaping (Result<ResultWeather, DataManagerError>) -> ()) {
         
-        guard let url = URL(string: getURL(latitude: lat, longitude: lon)) else {
-            
-            let error = NSError(domain: "", code: 1, userInfo: nil)
-            completion(.failure(error))
-            return
-        }
+        guard let url = URL(string: getURL(latitude: lat, longitude: lon)) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if let error = error {
-                completion(.failure(error))
+            if let _ = error {
+                completion(.failure(.failedRequest))
                 return
             }
             
@@ -45,19 +46,12 @@ class NetworkService {
             do {
                 let weatherObject = try JSONDecoder().decode(ResultWeather.self, from: data)
                 completion(.success(weatherObject))
-                print()
-                //print(weatherObject.daily[2...5])
+                
             } catch {
-                completion(.failure(error))
+                completion(.failure(.invalidResponse))
             }
+            completion(.failure(.unknown))
             
         }.resume()
-        
     }
-    
-    
-    
-    
 }
-
-

@@ -13,8 +13,8 @@ class TodayWeatherViewController: UIViewController {
     
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
-    let weatherResultViewModel: TodayWeatherViewModel?
-    
+    var todayWeatherViewModel: TodayWeatherViewModel?
+   
     var startLocation: CLLocation? {
         didSet {
             presentWeatherOfCurrentLocation()
@@ -23,12 +23,12 @@ class TodayWeatherViewController: UIViewController {
     }
     
     init(viewModel: TodayWeatherViewModel) {
-        self.weatherResultViewModel = viewModel
+        self.todayWeatherViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
-   override func viewDidLoad() {
-       super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         startLocation = CLLocation()
     
         setupInternalViewForMainView()
@@ -40,6 +40,8 @@ class TodayWeatherViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.topItem?.title = "Today"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchCity))
+        navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,14 +52,17 @@ class TodayWeatherViewController: UIViewController {
         forecatVC.navigationController?.navigationBar.topItem?.title = self.todayWeatherView.cityAndCountryLabel.text
     }
     
-     func setupInternalViewForMainView() {
+    
+    @objc func handleSearchCity() {
+        let searchVC = SearchCityViewController()
+        //searchVC.viewModel = todayWeatherViewModel
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+     private func setupInternalViewForMainView() {
 
         todayWeatherView = TodayWeatherView()
-        
-      
-        
         view.addSubview(todayWeatherView)
-        
         NSLayoutConstraint.activate([
             todayWeatherView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             todayWeatherView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -66,37 +71,37 @@ class TodayWeatherViewController: UIViewController {
         ])
     }
     
-    func presentWeatherOfCurrentLocation() {
+    private func presentWeatherOfCurrentLocation() {
 
         guard let currentLocation = startLocation else { return }
 
         let lat = currentLocation.coordinate.latitude
         let lon = currentLocation.coordinate.longitude
         
-        weatherResultViewModel?.getWeatherAt(lat: lat, lon: lon, completion: { [weak self] in
+        todayWeatherViewModel?.getWeatherAt(lat: lat, lon: lon, completion: { [weak self] in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 
                self?.todayWeatherView.temperatureAndWeatherStateLabel.text =
-               self?.weatherResultViewModel?.temperatureAndWeatherState
+               self?.todayWeatherViewModel?.temperatureAndWeatherState
                
                self?.todayWeatherView.humidityLabel.text =
-               self?.weatherResultViewModel?.humidity
+               self?.todayWeatherViewModel?.humidity
 
                self?.todayWeatherView.weatherStateImageView.image =
-               self?.weatherResultViewModel?.weatherStateImageView
+               self?.todayWeatherViewModel?.weatherStateImageView
 
                self?.todayWeatherView.precipitationLabel.text =
-               self?.weatherResultViewModel?.precipitation
+               self?.todayWeatherViewModel?.precipitation
 
                self?.todayWeatherView.pressureLabel.text =
-               self?.weatherResultViewModel?.pressure
+               self?.todayWeatherViewModel?.pressure
 
                self?.todayWeatherView.windSpeedLabel.text =
-               self?.weatherResultViewModel?.windSpeed
+               self?.todayWeatherViewModel?.windSpeed
 
                self?.todayWeatherView.compassLabel.text =
-               self?.weatherResultViewModel?.compass
+               self?.todayWeatherViewModel?.compass
                 self?.todayWeatherView.activityIndicator.stopAnimating()
             })
         })
@@ -104,7 +109,7 @@ class TodayWeatherViewController: UIViewController {
 
     required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
-       }
+    }
 }
 
 

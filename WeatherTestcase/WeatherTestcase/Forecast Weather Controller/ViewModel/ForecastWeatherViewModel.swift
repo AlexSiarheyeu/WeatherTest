@@ -11,26 +11,25 @@ import UIKit
 class ForecastWeatherViewModel  {
     
      private let dateFormatter = DateFormatter()
-     
+    
+     typealias currentTimeIndex = Int
+     typealias forecast = WeatherSaver
+    
      lazy var sectionsOfDays = [
-         [weatherstatic?.hourly[0], weatherstatic?.hourly[3], weatherstatic?.hourly[6], weatherstatic?.hourly[9],
-          weatherstatic?.hourly[12], weatherstatic?.hourly[15], weatherstatic?.hourly[18]],
+        [forecast.weather?.hourly[currentTimeIndex(0)], forecast.weather?.hourly[currentTimeIndex(3)],   // 1 day
+         forecast.weather?.hourly[currentTimeIndex(6)], forecast.weather?.hourly[currentTimeIndex(9)],
+         forecast.weather?.hourly[currentTimeIndex(12)], forecast.weather?.hourly[currentTimeIndex(15)],
+         forecast.weather?.hourly[currentTimeIndex(18)], forecast.weather?.hourly[currentTimeIndex(21)]],
       
-         [weatherstatic?.hourly[21], weatherstatic?.hourly[24], weatherstatic?.hourly[27], weatherstatic?.hourly[30],
-          weatherstatic?.hourly[33], weatherstatic?.hourly[36], weatherstatic?.hourly[39]],
-      
-         [weatherstatic?.hourly[0], weatherstatic?.hourly[3], weatherstatic?.hourly[6], weatherstatic?.hourly[9],
-          weatherstatic?.hourly[12], weatherstatic?.hourly[15], weatherstatic?.hourly[18]],
-              
-         [weatherstatic?.hourly[21], weatherstatic?.hourly[24], weatherstatic?.hourly[27], weatherstatic?.hourly[30],
-          weatherstatic?.hourly[33], weatherstatic?.hourly[36], weatherstatic?.hourly[39]],
-         
-         [weatherstatic?.hourly[42], weatherstatic?.hourly[45], weatherstatic?.hourly[47]]
+         [forecast.weather?.hourly[currentTimeIndex(27)], forecast.weather?.hourly[currentTimeIndex(30)], // 2 day
+          forecast.weather?.hourly[currentTimeIndex(33)], forecast.weather?.hourly[currentTimeIndex(36)],
+          forecast.weather?.hourly[currentTimeIndex(39)], forecast.weather?.hourly[currentTimeIndex(42)],
+          forecast.weather?.hourly[currentTimeIndex(45)]]
      ]
      
      
      func getTime(_ section: Int, _ row: Int) -> String {
-         
+        
           let hour = sectionsOfDays[section][row]
          
           guard let hourlyTime = hour?.dt else { return ""}
@@ -51,15 +50,15 @@ class ForecastWeatherViewModel  {
      func week(for index: Int) -> String {
          let dateFormatter = DateFormatter()
          dateFormatter.dateFormat = "  EEEE"
-         guard let f = weatherstatic?.daily[index].dt else {return ""}
+         guard let f = forecast.weather?.daily[index].dt else {return ""}
          let date = Date(timeIntervalSince1970: TimeInterval(f))
          return dateFormatter.string(from: date)
      }
      
      func temperature(_ section: Int, _ row: Int) -> String {
-         let hour = sectionsOfDays[section][row]
-         guard let temp = hour?.temp else {return ""}
-         return  "\(String(format: "%.0f", temp - 273.15)) ℃"
+        let hour = sectionsOfDays[section][row]
+        guard let temp = hour?.temp else {return ""}
+        return  "\(String(format: "%.0f", temp - 273.15)) ℃"
      }
      
      func weatherState(_ section: Int, _ row: Int) -> String {
@@ -74,4 +73,3 @@ class ForecastWeatherViewModel  {
          return UIImage.weatherIcon(of: state) ?? UIImage()
      }
  }
-

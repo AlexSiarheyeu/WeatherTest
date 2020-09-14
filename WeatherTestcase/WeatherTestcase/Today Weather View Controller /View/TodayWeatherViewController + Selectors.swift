@@ -12,7 +12,7 @@ extension TodayWeatherViewController {
     
     @objc func handleShareButton() {
         
-        guard let text = self.weatherResultViewModel?.temperatureAndWeatherState else {return}
+        guard let text = self.todayWeatherViewModel?.temperatureAndWeatherState else {return}
            
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         

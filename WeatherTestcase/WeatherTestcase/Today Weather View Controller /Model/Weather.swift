@@ -22,11 +22,7 @@ struct Current: Decodable {
     let humidity: Int
     let wind_speed: Double
     let weather: [Weather]
-}
-
-struct Minutely: Decodable {
-    var dt: Int
-    var precipitation: Int
+    
 }
 
 struct Weather: Decodable {
@@ -51,6 +47,12 @@ struct Daily: Decodable {
     let humidity: Int
     let wind_speed: Double
     let weather: [Weather]
+    let temp: Temperature
+}
+
+
+struct Temperature: Decodable {
+    var day: Double
 }
 
 
