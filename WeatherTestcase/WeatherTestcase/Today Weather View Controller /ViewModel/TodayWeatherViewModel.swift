@@ -35,7 +35,7 @@ class TodayWeatherViewModel {
     }
     
     var precipitation: String {
-        return "\(1000) mm"
+        return "\(0.2) mm"
     }
     
     var pressure: String {
@@ -67,7 +67,7 @@ class TodayWeatherViewModel {
             switch result {
             case .success(let weather):
                 WeatherSaver.weather = weather
-                print(weather)
+                
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

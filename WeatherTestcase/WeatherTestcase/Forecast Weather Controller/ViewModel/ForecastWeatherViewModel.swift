@@ -18,13 +18,11 @@ class ForecastWeatherViewModel  {
      lazy var sectionsOfDays = [
         [forecast.weather?.hourly[currentTimeIndex(0)], forecast.weather?.hourly[currentTimeIndex(3)],   // 1 day
          forecast.weather?.hourly[currentTimeIndex(6)], forecast.weather?.hourly[currentTimeIndex(9)],
-         forecast.weather?.hourly[currentTimeIndex(12)], forecast.weather?.hourly[currentTimeIndex(15)],
-         forecast.weather?.hourly[currentTimeIndex(18)], forecast.weather?.hourly[currentTimeIndex(21)]],
+         forecast.weather?.hourly[currentTimeIndex(12)], forecast.weather?.hourly[currentTimeIndex(15)]],
       
          [forecast.weather?.hourly[currentTimeIndex(27)], forecast.weather?.hourly[currentTimeIndex(30)], // 2 day
           forecast.weather?.hourly[currentTimeIndex(33)], forecast.weather?.hourly[currentTimeIndex(36)],
-          forecast.weather?.hourly[currentTimeIndex(39)], forecast.weather?.hourly[currentTimeIndex(42)],
-          forecast.weather?.hourly[currentTimeIndex(45)]]
+          forecast.weather?.hourly[currentTimeIndex(39)]]
      ]
      
      
