@@ -8,106 +8,79 @@
 
 import UIKit
 
-extension UILabel {
+extension UILabel  {
+    
+    func shouldShowTipWithText(_ text: String) {
+        self.addToolTip(description: text, gesture: .doubleTap, isEnabled: true)
+    }
     
     func shouldShowTip() {
         
         switch text {
-        case "N":
-            addToolTip(description: "North", gesture: .doubleTap, isEnabled: true)
             
-        case "NbE":
-            addToolTip(description: "North by east", gesture: .doubleTap, isEnabled: true)
+        case "N": shouldShowTipWithText("North")
             
-        case "NNE":
-            addToolTip(description: "North-northeast", gesture: .doubleTap, isEnabled: true)
+        case "NbE": shouldShowTipWithText("North by east")
             
-        case "NEbN":
-            addToolTip(description: "Northeast by north", gesture: .doubleTap, isEnabled: true)
+        case "NNE": shouldShowTipWithText("North-northeast")
             
-        case "NE":
-            addToolTip(description: "Northeast", gesture: .doubleTap, isEnabled: true)
+        case "NEbN": shouldShowTipWithText("Northeast by north")
             
-        case "NEbE":
-            addToolTip(description: "Northeast by east", gesture: .doubleTap, isEnabled: true)
+        case "NE": shouldShowTipWithText("Northeast")
             
-        case "ENE":
-            addToolTip(description: "East-northeast", gesture: .doubleTap, isEnabled: true)
+        case "NEbE": shouldShowTipWithText("Northeast by east")
             
-        case "EbN":
-            addToolTip(description: "East by north", gesture: .doubleTap, isEnabled: true)
+        case "ENE": shouldShowTipWithText("East-northeast")
             
-        case "E":
-            addToolTip(description: "East", gesture: .doubleTap, isEnabled: true)
+        case "EbN": shouldShowTipWithText("East by north")
             
-        case "EbS":
-            addToolTip(description: "East by south", gesture: .doubleTap, isEnabled: true)
+        case "E": shouldShowTipWithText("East")
             
-        case "ESE":
-            addToolTip(description: "East-southeast", gesture: .doubleTap, isEnabled: true)
+        case "EbS": shouldShowTipWithText("East by south")
             
-        case "SEbE":
-            addToolTip(description: "Southeast by east", gesture: .doubleTap, isEnabled: true)
+        case "ESE": shouldShowTipWithText("East-southeast")
             
-        case "SE":
-            addToolTip(description: "Southeast", gesture: .doubleTap, isEnabled: true)
+        case "SEbE": shouldShowTipWithText("Southeast by east")
             
-        case "SEbS":
-            addToolTip(description: "Southeast by south", gesture: .doubleTap, isEnabled: true)
+        case "SE": shouldShowTipWithText("Southeast")
             
-        case "SSE":
-            addToolTip(description: "South-southeast", gesture: .doubleTap, isEnabled: true)
+        case "SEbS": shouldShowTipWithText("Southeast by south")
             
-        case "SbE":
-            addToolTip(description: "South by east ", gesture: .doubleTap, isEnabled: true)
+        case "SSE": shouldShowTipWithText("South-southeast")
             
-        case "S":
-            addToolTip(description: "South", gesture: .doubleTap, isEnabled: true)
+        case "SbE": shouldShowTipWithText("South by east")
             
-        case "SbW":
-            addToolTip(description: "South by west", gesture: .doubleTap, isEnabled: true)
+        case "S": shouldShowTipWithText("South")
             
-        case "SSW":
-            addToolTip(description: "South-southwest", gesture: .doubleTap, isEnabled: true)
+        case "SbW": shouldShowTipWithText("South by west")
             
-        case "SWbS":
-            addToolTip(description: "Southwest by south", gesture: .doubleTap, isEnabled: true)
+        case "SSW": shouldShowTipWithText("South-southwest")
             
-        case "SW":
-            addToolTip(description: "Southwest", gesture: .doubleTap, isEnabled: true)
+        case "SWbS": shouldShowTipWithText("Southwest by south")
             
-        case "SWbW":
-            addToolTip(description: "Southwest by west", gesture: .doubleTap, isEnabled: true)
+        case "SW": shouldShowTipWithText("Southwest")
             
-        case "WSW":
-            addToolTip(description: "West-southwest", gesture: .doubleTap, isEnabled: true)
+        case "SWbW": shouldShowTipWithText("Southwest by west")
             
-        case "WbS":
-            addToolTip(description: "West by south", gesture: .doubleTap, isEnabled: true)
+        case "WSW": shouldShowTipWithText("West-southwest")
             
-        case "W":
-            addToolTip(description: "West", gesture: .doubleTap, isEnabled: true)
+        case "WbS": shouldShowTipWithText("West by south")
             
-        case "WbN":
-            addToolTip(description: "West by north", gesture: .doubleTap, isEnabled: true)
+        case "W": shouldShowTipWithText("West")
             
-        case "WNW":
-            addToolTip(description: "West-northwest", gesture: .doubleTap, isEnabled: true)
+        case "WbN": shouldShowTipWithText("West by north")
             
-        case "NWbW":
-            addToolTip(description: "Northwest by west", gesture: .doubleTap, isEnabled: true)
+        case "WNW": shouldShowTipWithText("West-northwest")
             
-        case "NW":
-            addToolTip(description: "Northwest", gesture: .doubleTap, isEnabled: true)
+        case "NWbW": shouldShowTipWithText("Northwest by west")
             
-        case "NWbN":
-            addToolTip(description: "Northwest by west", gesture: .doubleTap, isEnabled: true)
+        case "NW": shouldShowTipWithText("Northwest")
             
-        case "NNW":
-            addToolTip(description: "North-northwest", gesture: .doubleTap, isEnabled: true)
+        case "NWbN": shouldShowTipWithText("Northwest by west")
             
-        case "NbW":
-            addToolTip(description: "North by west", gesture: .doubleTap, isEnabled: true)
+        case "NNW": shouldShowTipWithText("North-northwest")
+            
+        case "NbW": shouldShowTipWithText("North by west")
         
         default: break
         }

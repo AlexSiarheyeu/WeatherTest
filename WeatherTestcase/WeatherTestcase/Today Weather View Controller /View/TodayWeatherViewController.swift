@@ -53,7 +53,7 @@ class TodayWeatherViewController: UIViewController {
     }
     
     
-    @objc func handleSearchCity() {
+    @objc private func handleSearchCity() {
         let searchVC = SearchCityViewController()
         
         navigationController?.pushViewController(searchVC, animated: true)
@@ -69,7 +69,6 @@ class TodayWeatherViewController: UIViewController {
             todayWeatherView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             todayWeatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-       
     }
     
     private func presentWeatherOfCurrentLocation() {
@@ -106,6 +105,10 @@ class TodayWeatherViewController: UIViewController {
                self?.todayWeatherView.activityIndicator.stopAnimating()
                 
                self?.todayWeatherView.compassLabel.shouldShowTip()
+               self?.todayWeatherView.humidityLabel.shouldShowTipWithText("Humidity")
+               self?.todayWeatherView.precipitationLabel.shouldShowTipWithText("Precipitation")
+               self?.todayWeatherView.pressureLabel.shouldShowTipWithText("Pressure")
+               self?.todayWeatherView.windSpeedLabel.shouldShowTipWithText("Wind speed")
             })
         })
      }
