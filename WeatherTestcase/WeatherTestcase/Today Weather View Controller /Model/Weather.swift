@@ -21,6 +21,7 @@ struct Current: Decodable {
     let pressure: Int
     let humidity: Int
     let wind_speed: Double
+    let wind_deg: Int
     let weather: [Weather]
     
 }

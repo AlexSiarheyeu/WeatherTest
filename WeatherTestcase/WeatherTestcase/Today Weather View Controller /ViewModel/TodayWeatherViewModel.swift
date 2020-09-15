@@ -51,7 +51,8 @@ class TodayWeatherViewModel {
     }
     
     var compass: String {
-        return "SE"
+        guard let windDirection = WeatherSaver.weather?.current.wind_deg else { return ""}
+        return windDirection.toDirection(degree: windDirection)
     }
     
     var weatherStateImageView: UIImage  {
@@ -66,6 +67,7 @@ class TodayWeatherViewModel {
             switch result {
             case .success(let weather):
                 WeatherSaver.weather = weather
+                print(weather)
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

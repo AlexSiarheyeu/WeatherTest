@@ -30,7 +30,7 @@ class TodayWeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startLocation = CLLocation()
-    
+        
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -55,7 +55,7 @@ class TodayWeatherViewController: UIViewController {
     
     @objc func handleSearchCity() {
         let searchVC = SearchCityViewController()
-        //searchVC.viewModel = todayWeatherViewModel
+        
         navigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -69,6 +69,7 @@ class TodayWeatherViewController: UIViewController {
             todayWeatherView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             todayWeatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+       
     }
     
     private func presentWeatherOfCurrentLocation() {
@@ -102,7 +103,9 @@ class TodayWeatherViewController: UIViewController {
 
                self?.todayWeatherView.compassLabel.text =
                self?.todayWeatherViewModel?.compass
-                self?.todayWeatherView.activityIndicator.stopAnimating()
+               self?.todayWeatherView.activityIndicator.stopAnimating()
+                
+               self?.todayWeatherView.compassLabel.shouldShowTip()
             })
         })
      }

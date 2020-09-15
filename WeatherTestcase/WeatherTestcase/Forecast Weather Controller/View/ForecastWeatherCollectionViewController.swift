@@ -19,7 +19,7 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
     let underNavBarColoringImageView: UIImageView = {
         let imageView = UIImageView() 
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "rainbow")
+        imageView.image = UIImage(named: "rainbow")
         return imageView
     }()
     
@@ -31,7 +31,6 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
 
         collectionView.backgroundColor = .white
         collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastWeatherCollectionViewController.cellId)
-        
         collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId)
     }
     
