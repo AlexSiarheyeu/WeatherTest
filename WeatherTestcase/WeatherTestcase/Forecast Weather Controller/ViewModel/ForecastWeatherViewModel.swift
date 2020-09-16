@@ -30,16 +30,9 @@ class ForecastWeatherViewModel  {
           guard let hourlyTime = hour?.dt else { return ""}
             
              let time = Date(timeIntervalSince1970: TimeInterval(hourlyTime))
-
-             dateFormatter.dateFormat = "hh:mm a"
-             let dateAsString = dateFormatter.string(from: time as Date)
-         
-             dateFormatter.dateFormat = "h:mm a"
-             let date = dateFormatter.date(from: dateAsString)
-         
-             dateFormatter.dateFormat = "HH:mm"
-             let finalDate = dateFormatter.string(from: date!)
-             return finalDate
+             dateFormatter.dateFormat = "MM/dd/yyyy" //"hh:mm a"
+             let date = dateFormatter.string(from: time as Date)
+             return date
      }
     
      func week(for index: Int) -> String {
@@ -59,7 +52,7 @@ class ForecastWeatherViewModel  {
      func weatherState(_ section: Int, _ row: Int) -> String {
          let hour = sectionsOfDays[section][row]
          guard let state = hour?.weather[0].description else { return "" }
-         return state
+        return state.capitalizingFirstLetter()
      }
      
      func getWeatherStateImage(_ section: Int, _ row: Int) -> UIImage {
