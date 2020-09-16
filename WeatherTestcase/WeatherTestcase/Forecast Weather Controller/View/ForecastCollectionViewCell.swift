@@ -46,13 +46,26 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         let views = [weatherStateLabel, weatherStateImageView, timeLabel, temperatureLabel, separatorView]
+        
         views.forEach { addSubview($0) }
+        
+        activatingConstraintsForInputViews()
+        
+    }
+    
+    func configure(viewModel: ForecastWeatherViewModel, _ section: Int, _ row: Int) {
+        
+        timeLabel.text = viewModel.getTime(section, row)
+        temperatureLabel.text = viewModel.temperature(section, row)
+        weatherStateLabel.text = viewModel.weatherState(section, row)
+        weatherStateImageView.image = viewModel.getWeatherStateImage(section, row)
+    }
+    
+    private func activatingConstraintsForInputViews() {
         
         NSLayoutConstraint.activate([
             weatherStateImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

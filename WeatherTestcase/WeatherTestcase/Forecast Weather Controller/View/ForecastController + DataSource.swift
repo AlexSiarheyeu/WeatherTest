@@ -23,14 +23,20 @@ extension ForecastWeatherCollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastWeatherCollectionViewController.cellId, for: indexPath) as! ForecastCollectionViewCell
         
-        cell.timeLabel.text =
-            forecastViewModel?.getTime(indexPath.section, indexPath.row)
-        cell.temperatureLabel.text =
-            forecastViewModel?.temperature(indexPath.section, indexPath.row)
-        cell.weatherStateLabel.text =
-            forecastViewModel?.weatherState(indexPath.section, indexPath.row)
-        cell.weatherStateImageView.image =
-            forecastViewModel?.getWeatherStateImage(indexPath.section, indexPath.row)
+        if let viewModel = forecastViewModel {
+            cell.configure(viewModel: viewModel,
+                           indexPath.section,
+                           indexPath.row)
+        }
+        
+//        cell.timeLabel.text =
+//            forecastViewModel?.getTime(indexPath.section, indexPath.row)
+//        cell.temperatureLabel.text =
+//            forecastViewModel?.temperature(indexPath.section, indexPath.row)
+//        cell.weatherStateLabel.text =
+//            forecastViewModel?.weatherState(indexPath.section, indexPath.row)
+//        cell.weatherStateImageView.image =
+//            forecastViewModel?.getWeatherStateImage(indexPath.section, indexPath.row)
        
         return cell
     }
