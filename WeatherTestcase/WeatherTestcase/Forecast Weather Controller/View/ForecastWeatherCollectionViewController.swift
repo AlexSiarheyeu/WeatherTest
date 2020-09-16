@@ -23,12 +23,12 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
         return imageView
     }()
     
-    var forecastViewModel = ForecastWeatherViewModel()
+    var forecastViewModel: ForecastWeatherViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUnderNavBarColoringLine()
-
         collectionView.backgroundColor = .white
         collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastWeatherCollectionViewController.cellId)
         collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId)
@@ -36,11 +36,13 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        forecastViewModel = ForecastWeatherViewModel()
         collectionView.reloadData()
     }
     
     func setupUnderNavBarColoringLine() {
         view.addSubview(underNavBarColoringImageView)
+        underNavBarColoringImageView.makeDashedBorderLine()
         NSLayoutConstraint.activate([
             underNavBarColoringImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
             underNavBarColoringImageView.heightAnchor.constraint(equalToConstant: 2),

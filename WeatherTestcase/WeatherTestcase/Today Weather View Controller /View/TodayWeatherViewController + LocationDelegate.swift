@@ -17,7 +17,10 @@ extension TodayWeatherViewController: CLLocationManagerDelegate {
        locationManager?.requestLocation()
        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
           CLLocationManager.authorizationStatus() == .authorizedAlways {
-           startLocation = locationManager?.location
+        
+          if let location = locationManager?.location {
+            startLocation = location
+          }
        }
     }
 
@@ -27,7 +30,6 @@ extension TodayWeatherViewController: CLLocationManagerDelegate {
            startLocation = location
        }
         todayWeatherView.activityIndicator.startAnimating()
-
     }
        
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -43,9 +45,7 @@ extension TodayWeatherViewController: CLLocationManagerDelegate {
     
     func defineCurrentCity() {
         
-       guard let currentLocation = startLocation else { return }
-
-       CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: { [weak self]
+       CLGeocoder().reverseGeocodeLocation(startLocation, completionHandler: { [weak self]
             placemarks, error in
             
             if let error = error {

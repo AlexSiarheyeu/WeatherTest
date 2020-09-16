@@ -28,6 +28,7 @@
 		BC3E393E250A943A0006B657 /* UIImage + defineWeatherState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E393D250A943A0006B657 /* UIImage + defineWeatherState.swift */; };
 		BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */; };
 		BC53A24D2506D69200CE4EA5 /* Double + func.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A24C2506D69200CE4EA5 /* Double + func.swift */; };
+		BC7C18B32512129C00DCFA5B /* WeatherDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */; };
 		BCB6DB0F250E1886001B7330 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB0E250E1886001B7330 /* SearchCityViewController.swift */; };
 		BCB6DB11250E1CAE001B7330 /* UITextField + padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB10250E1CAE001B7330 /* UITextField + padding.swift */; };
 		BCB6DB35250F9DAE001B7330 /* Int + defineCompassDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB34250F9DAE001B7330 /* Int + defineCompassDirection.swift */; };
@@ -75,6 +76,7 @@
 		BC3E393D250A943A0006B657 /* UIImage + defineWeatherState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + defineWeatherState.swift"; sourceTree = "<group>"; };
 		BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherViewModel.swift; sourceTree = "<group>"; };
 		BC53A24C2506D69200CE4EA5 /* Double + func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + func.swift"; sourceTree = "<group>"; };
+		BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDownloader.swift; sourceTree = "<group>"; };
 		BCB6DB0E250E1886001B7330 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		BCB6DB10250E1CAE001B7330 /* UITextField + padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + padding.swift"; sourceTree = "<group>"; };
 		BCB6DB34250F9DAE001B7330 /* Int + defineCompassDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + defineCompassDirection.swift"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				BC2413C72501257100723002 /* NetworkService.swift */,
+				BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				BCFFE5812510B43200233B77 /* UILabel + showTip.swift in Sources */,
 				BCB6DB0F250E1886001B7330 /* SearchCityViewController.swift in Sources */,
 				BC2413DE2503E5E200723002 /* ForecastWeatherCollectionViewController.swift in Sources */,
+				BC7C18B32512129C00DCFA5B /* WeatherDownloader.swift in Sources */,
 				BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */,
 				BC2413D52503903300723002 /* TodayWeatherViewController + LocationDelegate.swift in Sources */,
 				BC3E393C250A88BC0006B657 /* TodayWeatherViewController + Selectors.swift in Sources */,

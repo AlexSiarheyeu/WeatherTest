@@ -12,20 +12,17 @@ class ForecastWeatherViewModel  {
     
      private let dateFormatter = DateFormatter()
     
-     typealias currentTimeIndex = Int
+     typealias currentDayIndex = Int
      typealias forecast = WeatherSaver
     
      lazy var sectionsOfDays = [
-        [forecast.weather?.hourly[currentTimeIndex(0)], forecast.weather?.hourly[currentTimeIndex(3)],   // 1 day
-         forecast.weather?.hourly[currentTimeIndex(6)], forecast.weather?.hourly[currentTimeIndex(9)],
-         forecast.weather?.hourly[currentTimeIndex(12)], forecast.weather?.hourly[currentTimeIndex(15)]],
-      
-         [forecast.weather?.hourly[currentTimeIndex(27)], forecast.weather?.hourly[currentTimeIndex(30)], // 2 day
-          forecast.weather?.hourly[currentTimeIndex(33)], forecast.weather?.hourly[currentTimeIndex(36)],
-          forecast.weather?.hourly[currentTimeIndex(39)]]
-     ]
-     
-     
+        [forecast.weather?.daily[currentDayIndex(0)]],
+        [forecast.weather?.daily[currentDayIndex(1)]],
+        [forecast.weather?.daily[currentDayIndex(2)]],
+        [forecast.weather?.daily[currentDayIndex(3)]],
+        [forecast.weather?.daily[currentDayIndex(4)]]
+        ]
+        
      func getTime(_ section: Int, _ row: Int) -> String {
         
           let hour = sectionsOfDays[section][row]
@@ -55,8 +52,8 @@ class ForecastWeatherViewModel  {
      
      func temperature(_ section: Int, _ row: Int) -> String {
         let hour = sectionsOfDays[section][row]
-        guard let temp = hour?.temp else {return ""}
-        return  "\(String(format: "%.0f", temp - 273.15)) ℃"
+        guard let temp = hour?.temp.day.toCelsius() else {return ""}
+        return  "\(String(format: "%.0f", temp)) ℃"
      }
      
      func weatherState(_ section: Int, _ row: Int) -> String {

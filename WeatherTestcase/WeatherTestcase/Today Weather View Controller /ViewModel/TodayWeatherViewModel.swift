@@ -9,10 +9,6 @@
 import UIKit
 import CoreLocation
 
-struct WeatherSaver {
-    static var weather: ResultWeather?
-}
-
 class TodayWeatherViewModel {
     
     var networkService: NetworkService
@@ -59,21 +55,6 @@ class TodayWeatherViewModel {
         guard let weatherObject = WeatherSaver.weather?.current.weather[0].main else {return UIImage()}
         return UIImage.weatherIcon(of: weatherObject) ?? UIImage()
     }
-    
-    func getWeatherAt(lat: Double, lon: Double, completion: @escaping ()->()) {
-           
-        NetworkService.shared.getWeather(lat: lat, lon: lon) { (result) in
-           
-            switch result {
-            case .success(let weather):
-                WeatherSaver.weather = weather
-                
-                completion()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    }
+}
 
 

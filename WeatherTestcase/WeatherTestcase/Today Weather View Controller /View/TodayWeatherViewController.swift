@@ -14,9 +14,11 @@ class TodayWeatherViewController: UIViewController {
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
     var todayWeatherViewModel: TodayWeatherViewModel?
-   
-    var startLocation: CLLocation? {
+    var forecastViewModel: ForecastWeatherViewModel?
+    
+    var startLocation = CLLocation() {
         didSet {
+            
             presentWeatherOfCurrentLocation()
             defineCurrentCity()
         }
@@ -29,7 +31,6 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startLocation = CLLocation()
         
         setupInternalViewForMainView()
         getCurrentLocation()
@@ -55,7 +56,6 @@ class TodayWeatherViewController: UIViewController {
     
     @objc private func handleSearchCity() {
         let searchVC = SearchCityViewController()
-        
         navigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -71,16 +71,14 @@ class TodayWeatherViewController: UIViewController {
         ])
     }
     
-    private func presentWeatherOfCurrentLocation() {
-
-        guard let currentLocation = startLocation else { return }
-
-        let lat = currentLocation.coordinate.latitude
-        let lon = currentLocation.coordinate.longitude
+     private func presentWeatherOfCurrentLocation() {
         
-        todayWeatherViewModel?.getWeatherAt(lat: lat, lon: lon, completion: { [weak self] in
+        let lat = startLocation.coordinate.latitude
+        let lon = startLocation.coordinate.longitude
+        
+        WeatherDownloader.getWeatherAt(lat: lat, lon: lon, completion: {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
                 
                self?.todayWeatherView.temperatureAndWeatherStateLabel.text =
                self?.todayWeatherViewModel?.temperatureAndWeatherState
