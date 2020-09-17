@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alexey Sergeev. All rights reserved.
 //
 
-import UIKit
+import UIKit.UIImage
 import CoreLocation
 
 class TodayWeatherViewModel {

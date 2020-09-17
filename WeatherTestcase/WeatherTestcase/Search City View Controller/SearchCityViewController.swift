@@ -22,9 +22,7 @@ class SearchCityViewController: UIViewController {
         searchTF.setLeftPaddingPoints(8)
         return searchTF
     }()
-    
-    //var viewModel: TodayWeatherViewModel?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,8 +50,16 @@ class SearchCityViewController: UIViewController {
             
             getCoordinateFrom(address: text) { (coordinate, error) in
                 guard let coordinate = coordinate, error == nil else {return}
-                //TODO
-               // self.viewModel?.getWeatherAt(lat: coordinate.latitude, lon: coordinate.longitude)
+                
+                NetworkService.shared.getWeather(lat: coordinate.latitude, lon: coordinate.longitude) { (result) in
+                    switch result {
+                        
+                    case .success(let weather):
+                        WeatherSaver.weather = weather
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
             }
             navigationController?.popViewController(animated: true)
           

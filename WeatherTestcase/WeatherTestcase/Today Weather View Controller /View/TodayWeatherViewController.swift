@@ -14,11 +14,37 @@ class TodayWeatherViewController: UIViewController {
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
     var todayWeatherViewModel: TodayWeatherViewModel?
-    var forecastViewModel: ForecastWeatherViewModel?
+    
+//    var viewModel: SearchControllerViewModel? {
+//        didSet{
+//            DispatchQueue.main.async {
+//
+//                self.todayWeatherView.temperatureAndWeatherStateLabel.text =
+//                self.viewModel?.temperatureAndWeatherState
+//
+//                self.todayWeatherView.humidityLabel.text =
+//                self.viewModel?.humidity
+//
+//                self.todayWeatherView.weatherStateImageView.image =
+//                self.viewModel?.weatherStateImageView
+//
+//                self.todayWeatherView.precipitationLabel.text =
+//                self.viewModel?.precipitation
+//
+//                self.todayWeatherView.pressureLabel.text =
+//                self.viewModel?.pressure
+//
+//                self.todayWeatherView.windSpeedLabel.text =
+//                self.viewModel?.windSpeed
+//
+//                self.todayWeatherView.compassLabel.text =
+//                self.viewModel?.compass
+//            }
+      //  }
+    //}
     
     var startLocation = CLLocation() {
         didSet {
-            
             presentWeatherOfCurrentLocation()
             defineCurrentCity()
         }
@@ -31,7 +57,7 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -39,7 +65,7 @@ class TodayWeatherViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.navigationBar.topItem?.title = "Today"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchCity))
         navigationItem.leftBarButtonItem?.tintColor = .black
@@ -47,12 +73,12 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        // viewModel = SearchControllerViewModel()
         let navVC = tabBarController?.viewControllers![1] as! UINavigationController
         let forecatVC = navVC.topViewController as! ForecastWeatherCollectionViewController;()
         forecatVC.navigationController?.navigationBar.topItem?.title = self.todayWeatherView.cityAndCountryLabel.text
+
     }
-    
     
     @objc private func handleSearchCity() {
         let searchVC = SearchCityViewController()
@@ -63,6 +89,7 @@ class TodayWeatherViewController: UIViewController {
 
         todayWeatherView = TodayWeatherView()
         view.addSubview(todayWeatherView)
+        
         NSLayoutConstraint.activate([
             todayWeatherView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             todayWeatherView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -107,6 +134,7 @@ class TodayWeatherViewController: UIViewController {
                self?.todayWeatherView.precipitationLabel.shouldShowTipWithText("Precipitation")
                self?.todayWeatherView.pressureLabel.shouldShowTipWithText("Pressure")
                self?.todayWeatherView.windSpeedLabel.shouldShowTipWithText("Wind speed")
+            
             })
         })
      }

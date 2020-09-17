@@ -30,7 +30,7 @@ class ForecastWeatherViewModel  {
           guard let hourlyTime = hour?.dt else { return ""}
             
              let time = Date(timeIntervalSince1970: TimeInterval(hourlyTime))
-             dateFormatter.dateFormat = "MM/dd/yyyy" //"hh:mm a"
+             dateFormatter.dateFormat = "MMM d, yyyy" //"hh:mm a"
              let date = dateFormatter.string(from: time as Date)
              return date
      }

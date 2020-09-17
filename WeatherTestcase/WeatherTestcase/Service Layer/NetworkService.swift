@@ -24,7 +24,7 @@ class NetworkService {
     
     static let shared = NetworkService()
     
-    func getURL(latitude: Double, longitude: Double) -> String {
+    private func getURL(latitude: Double, longitude: Double) -> String {
         
         let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&exclude=minutely" + "&appid=" + API.apiKey
         return API.basicURL + oneCallAPI
@@ -46,7 +46,6 @@ class NetworkService {
             do {
                 let weatherObject = try JSONDecoder().decode(ResultWeather.self, from: data)
                 completion(.success(weatherObject))
-                
             } catch {
                 completion(.failure(.invalidResponse))
             }

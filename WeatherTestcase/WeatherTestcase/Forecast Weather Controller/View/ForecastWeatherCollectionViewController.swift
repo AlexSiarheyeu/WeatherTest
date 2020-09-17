@@ -40,7 +40,8 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
         collectionView.reloadData()
     }
     
-    func setupUnderNavBarColoringLine() {
+    private func setupUnderNavBarColoringLine() {
+        
         view.addSubview(underNavBarColoringImageView)
         underNavBarColoringImageView.makeDashedBorderLine()
         NSLayoutConstraint.activate([

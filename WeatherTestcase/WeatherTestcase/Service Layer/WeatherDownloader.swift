@@ -21,11 +21,10 @@ class WeatherDownloader {
         switch result {
         case .success(let weather):
             WeatherSaver.weather = weather
-            print(WeatherSaver.weather?.timezone)
             completion()
         case .failure(let error):
             print(error.localizedDescription)
         }
     }
-}
+  }
 }
