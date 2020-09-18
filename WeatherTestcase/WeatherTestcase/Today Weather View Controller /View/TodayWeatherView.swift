@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyToolTip
+
 
 class TodayWeatherView: UIView {
  

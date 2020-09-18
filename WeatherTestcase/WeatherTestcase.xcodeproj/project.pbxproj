@@ -30,8 +30,6 @@
 		BC53A24D2506D69200CE4EA5 /* Double + func.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A24C2506D69200CE4EA5 /* Double + func.swift */; };
 		BC7C18B32512129C00DCFA5B /* WeatherDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */; };
 		BC7C18B52512513800DCFA5B /* String + uppercaseLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C18B42512513800DCFA5B /* String + uppercaseLetter.swift */; };
-		BC7C18B72512A4FA00DCFA5B /* SearchControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C18B62512A4FA00DCFA5B /* SearchControllerViewModel.swift */; };
-		BCB6DB0F250E1886001B7330 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB0E250E1886001B7330 /* SearchCityViewController.swift */; };
 		BCB6DB11250E1CAE001B7330 /* UITextField + padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB10250E1CAE001B7330 /* UITextField + padding.swift */; };
 		BCB6DB35250F9DAE001B7330 /* Int + defineCompassDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB6DB34250F9DAE001B7330 /* Int + defineCompassDirection.swift */; };
 		BCFFE5812510B43200233B77 /* UILabel + showTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFFE5802510B43200233B77 /* UILabel + showTip.swift */; };
@@ -80,8 +78,6 @@
 		BC53A24C2506D69200CE4EA5 /* Double + func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + func.swift"; sourceTree = "<group>"; };
 		BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDownloader.swift; sourceTree = "<group>"; };
 		BC7C18B42512513800DCFA5B /* String + uppercaseLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + uppercaseLetter.swift"; sourceTree = "<group>"; };
-		BC7C18B62512A4FA00DCFA5B /* SearchControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerViewModel.swift; sourceTree = "<group>"; };
-		BCB6DB0E250E1886001B7330 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		BCB6DB10250E1CAE001B7330 /* UITextField + padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + padding.swift"; sourceTree = "<group>"; };
 		BCB6DB34250F9DAE001B7330 /* Int + defineCompassDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + defineCompassDirection.swift"; sourceTree = "<group>"; };
 		BCFFE5802510B43200233B77 /* UILabel + showTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + showTip.swift"; sourceTree = "<group>"; };
@@ -142,7 +138,6 @@
 			children = (
 				BC2413972500E19B00723002 /* AppDelegate.swift */,
 				BC2413CA2502129C00723002 /* MainTabBarController.swift */,
-				BCB6DB0D250E185C001B7330 /* Search City View Controller */,
 				BC2413D72503E50A00723002 /* Forecast Weather Controller */,
 				BC2413D62503E2CC00723002 /* Today Weather View Controller  */,
 				BC2413C92501257200723002 /* Service Layer */,
@@ -249,15 +244,6 @@
 				BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		BCB6DB0D250E185C001B7330 /* Search City View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				BCB6DB0E250E1886001B7330 /* SearchCityViewController.swift */,
-				BC7C18B62512A4FA00DCFA5B /* SearchControllerViewModel.swift */,
-			);
-			path = "Search City View Controller";
 			sourceTree = "<group>";
 		};
 		D749541D344DA7189B9C85E1 /* Pods */ = {
@@ -426,7 +412,6 @@
 				BC2413E02503EA0300723002 /* DayHeaderView.swift in Sources */,
 				BC2413D2250378E400723002 /* TodayWeatherViewModel.swift in Sources */,
 				BCFFE5812510B43200233B77 /* UILabel + showTip.swift in Sources */,
-				BCB6DB0F250E1886001B7330 /* SearchCityViewController.swift in Sources */,
 				BC2413DE2503E5E200723002 /* ForecastWeatherCollectionViewController.swift in Sources */,
 				BC7C18B32512129C00DCFA5B /* WeatherDownloader.swift in Sources */,
 				BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */,
@@ -436,7 +421,6 @@
 				BC2413C42501224000723002 /* Weather.swift in Sources */,
 				BC53A24D2506D69200CE4EA5 /* Double + func.swift in Sources */,
 				BC2413CB2502129C00723002 /* MainTabBarController.swift in Sources */,
-				BC7C18B72512A4FA00DCFA5B /* SearchControllerViewModel.swift in Sources */,
 				BC24139C2500E19B00723002 /* TodayWeatherViewController.swift in Sources */,
 				BC2413982500E19B00723002 /* AppDelegate.swift in Sources */,
 				BC2413E22503ECC000723002 /* ForecastCollectionViewCell.swift in Sources */,

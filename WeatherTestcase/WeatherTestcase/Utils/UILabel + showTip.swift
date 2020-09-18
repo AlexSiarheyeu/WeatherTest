@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyToolTip
 
 extension UILabel  {
     

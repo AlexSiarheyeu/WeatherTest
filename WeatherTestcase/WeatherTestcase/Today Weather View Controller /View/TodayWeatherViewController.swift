@@ -15,34 +15,6 @@ class TodayWeatherViewController: UIViewController {
     var locationManager: CLLocationManager?
     var todayWeatherViewModel: TodayWeatherViewModel?
     
-//    var viewModel: SearchControllerViewModel? {
-//        didSet{
-//            DispatchQueue.main.async {
-//
-//                self.todayWeatherView.temperatureAndWeatherStateLabel.text =
-//                self.viewModel?.temperatureAndWeatherState
-//
-//                self.todayWeatherView.humidityLabel.text =
-//                self.viewModel?.humidity
-//
-//                self.todayWeatherView.weatherStateImageView.image =
-//                self.viewModel?.weatherStateImageView
-//
-//                self.todayWeatherView.precipitationLabel.text =
-//                self.viewModel?.precipitation
-//
-//                self.todayWeatherView.pressureLabel.text =
-//                self.viewModel?.pressure
-//
-//                self.todayWeatherView.windSpeedLabel.text =
-//                self.viewModel?.windSpeed
-//
-//                self.todayWeatherView.compassLabel.text =
-//                self.viewModel?.compass
-//            }
-      //  }
-    //}
-    
     var startLocation = CLLocation() {
         didSet {
             presentWeatherOfCurrentLocation()
@@ -57,7 +29,7 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupActiveNotification()
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -67,23 +39,16 @@ class TodayWeatherViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.topItem?.title = "Today"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchCity))
-        navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
-        // viewModel = SearchControllerViewModel()
         let navVC = tabBarController?.viewControllers![1] as! UINavigationController
         let forecatVC = navVC.topViewController as! ForecastWeatherCollectionViewController;()
         forecatVC.navigationController?.navigationBar.topItem?.title = self.todayWeatherView.cityAndCountryLabel.text
-
     }
     
-    @objc private func handleSearchCity() {
-        let searchVC = SearchCityViewController()
-        navigationController?.pushViewController(searchVC, animated: true)
-    }
     
      private func setupInternalViewForMainView() {
 
@@ -134,10 +99,33 @@ class TodayWeatherViewController: UIViewController {
                self?.todayWeatherView.precipitationLabel.shouldShowTipWithText("Precipitation")
                self?.todayWeatherView.pressureLabel.shouldShowTipWithText("Pressure")
                self?.todayWeatherView.windSpeedLabel.shouldShowTipWithText("Wind speed")
-            
             })
         })
      }
+    
+    private func setupActiveNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(TodayWeatherViewController.applicationDidBecomeActive(notification:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+    }
+    
+    @objc func applicationDidBecomeActive(notification: Notification) {
+        getCurrentLocation()
+    }
+    
+    func getCurrentLocation() {
+              
+       locationManager = CLLocationManager()
+       locationManager?.delegate = self
+       locationManager?.requestLocation()
+       if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+        locationManager?.requestLocation()
+       } else {
+        locationManager?.requestWhenInUseAuthorization()
+       }
+    }
 
     required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")

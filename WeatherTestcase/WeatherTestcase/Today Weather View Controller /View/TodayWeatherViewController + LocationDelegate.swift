@@ -9,20 +9,6 @@
 import CoreLocation
 
 extension TodayWeatherViewController: CLLocationManagerDelegate {
-    
-    func getCurrentLocation() {
-              
-       locationManager = CLLocationManager()
-       locationManager?.delegate = self
-       locationManager?.requestLocation()
-       if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-          CLLocationManager.authorizationStatus() == .authorizedAlways {
-        
-          if let location = locationManager?.location {
-            startLocation = location
-          }
-       }
-    }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            
