@@ -20,6 +20,12 @@ class DayHeaderView: UICollectionReusableView {
         return label
     }()
     
+    var viewModel: ForecastWeatherCellViewModelType? {
+        didSet {
+            dayLabel.text = viewModel?.getCurrentDay()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
                 

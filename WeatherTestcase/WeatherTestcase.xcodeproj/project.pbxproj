@@ -26,6 +26,7 @@
 		BC2413E4250536EC00723002 /* ForecastController + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2413E3250536EC00723002 /* ForecastController + DataSource.swift */; };
 		BC3E393C250A88BC0006B657 /* TodayWeatherViewController + Selectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E393B250A88BC0006B657 /* TodayWeatherViewController + Selectors.swift */; };
 		BC3E393E250A943A0006B657 /* UIImage + defineWeatherState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E393D250A943A0006B657 /* UIImage + defineWeatherState.swift */; };
+		BC47D6D52518F30F005123F8 /* ForecastWeatherCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47D6D42518F30F005123F8 /* ForecastWeatherCellViewModel.swift */; };
 		BC53A23E2505628F00CE4EA5 /* ForecastWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */; };
 		BC53A24D2506D69200CE4EA5 /* Double + func.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53A24C2506D69200CE4EA5 /* Double + func.swift */; };
 		BC7C18B32512129C00DCFA5B /* WeatherDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */; };
@@ -74,6 +75,7 @@
 		BC2413E3250536EC00723002 /* ForecastController + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastController + DataSource.swift"; sourceTree = "<group>"; };
 		BC3E393B250A88BC0006B657 /* TodayWeatherViewController + Selectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayWeatherViewController + Selectors.swift"; sourceTree = "<group>"; };
 		BC3E393D250A943A0006B657 /* UIImage + defineWeatherState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + defineWeatherState.swift"; sourceTree = "<group>"; };
+		BC47D6D42518F30F005123F8 /* ForecastWeatherCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherCellViewModel.swift; sourceTree = "<group>"; };
 		BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherViewModel.swift; sourceTree = "<group>"; };
 		BC53A24C2506D69200CE4EA5 /* Double + func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + func.swift"; sourceTree = "<group>"; };
 		BC7C18B22512129C00DCFA5B /* WeatherDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDownloader.swift; sourceTree = "<group>"; };
@@ -136,8 +138,7 @@
 		BC2413962500E19B00723002 /* WeatherTestcase */ = {
 			isa = PBXGroup;
 			children = (
-				BC2413972500E19B00723002 /* AppDelegate.swift */,
-				BC2413CA2502129C00723002 /* MainTabBarController.swift */,
+				BC47D6732515232B005123F8 /* Main core */,
 				BC2413D72503E50A00723002 /* Forecast Weather Controller */,
 				BC2413D62503E2CC00723002 /* Today Weather View Controller  */,
 				BC2413C92501257200723002 /* Service Layer */,
@@ -242,8 +243,18 @@
 			isa = PBXGroup;
 			children = (
 				BC53A23D2505628F00CE4EA5 /* ForecastWeatherViewModel.swift */,
+				BC47D6D42518F30F005123F8 /* ForecastWeatherCellViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BC47D6732515232B005123F8 /* Main core */ = {
+			isa = PBXGroup;
+			children = (
+				BC2413972500E19B00723002 /* AppDelegate.swift */,
+				BC2413CA2502129C00723002 /* MainTabBarController.swift */,
+			);
+			path = "Main core";
 			sourceTree = "<group>";
 		};
 		D749541D344DA7189B9C85E1 /* Pods */ = {
@@ -424,6 +435,7 @@
 				BC24139C2500E19B00723002 /* TodayWeatherViewController.swift in Sources */,
 				BC2413982500E19B00723002 /* AppDelegate.swift in Sources */,
 				BC2413E22503ECC000723002 /* ForecastCollectionViewCell.swift in Sources */,
+				BC47D6D52518F30F005123F8 /* ForecastWeatherCellViewModel.swift in Sources */,
 				BC2413CD25021B9800723002 /* TodayWeatherView.swift in Sources */,
 				BCB6DB35250F9DAE001B7330 /* Int + defineCompassDirection.swift in Sources */,
 				BC3E393E250A943A0006B657 /* UIImage + defineWeatherState.swift in Sources */,

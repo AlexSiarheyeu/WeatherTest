@@ -6,14 +6,27 @@
 //  Copyright © 2020 Alexey Sergeev. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class ForecastWeatherViewModel  {
+protocol ForecastWeatherViewModelType {
     
-     private let dateFormatter = DateFormatter()
+    var numberOfItems: Int { get }
+    var numberOfSections: Int { get }
+    func configureCell(_ section: Int, _ row: Int) -> ForecastWeatherCellViewModel?
+}
+
+class ForecastWeatherViewModel: ForecastWeatherViewModelType {
     
-     typealias currentDayIndex = Int
-     typealias forecast = WeatherSaver
+    typealias currentDayIndex = Int
+    typealias forecast = WeatherSaver
+    
+    var numberOfSections: Int {
+        sectionsOfDays.count
+    }
+    
+    var numberOfItems: Int {
+        sectionsOfDays[0].count
+    }
     
      lazy var sectionsOfDays = [
         [forecast.weather?.daily[currentDayIndex(0)]],
@@ -22,42 +35,9 @@ class ForecastWeatherViewModel  {
         [forecast.weather?.daily[currentDayIndex(3)]],
         [forecast.weather?.daily[currentDayIndex(4)]]
         ]
-        
-     func getTime(_ section: Int, _ row: Int) -> String {
-        
-          let hour = sectionsOfDays[section][row]
-         
-          guard let hourlyTime = hour?.dt else { return ""}
-            
-             let time = Date(timeIntervalSince1970: TimeInterval(hourlyTime))
-             dateFormatter.dateFormat = "MMM d, yyyy" //"hh:mm a"
-             let date = dateFormatter.string(from: time as Date)
-             return date
-     }
     
-     func week(for index: Int) -> String {
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "  EEEE"
-         guard let f = forecast.weather?.daily[index].dt else {return ""}
-         let date = Date(timeIntervalSince1970: TimeInterval(f))
-         return dateFormatter.string(from: date)
-     }
-     
-     func temperature(_ section: Int, _ row: Int) -> String {
-        let hour = sectionsOfDays[section][row]
-        guard let temp = hour?.temp.day.toCelsius() else {return ""}
-        return  "\(String(format: "%.0f", temp)) ℃"
-     }
-     
-     func weatherState(_ section: Int, _ row: Int) -> String {
-         let hour = sectionsOfDays[section][row]
-         guard let state = hour?.weather[0].description else { return "" }
-        return state.capitalizingFirstLetter()
-     }
-     
-     func getWeatherStateImage(_ section: Int, _ row: Int) -> UIImage {
-         let hour = sectionsOfDays[section][row]
-         guard let state = hour?.weather[0].main else { return UIImage() }
-         return UIImage.weatherIcon(of: state) ?? UIImage()
-     }
+    func configureCell(_ section: Int, _ row: Int) -> ForecastWeatherCellViewModel? {
+        let weather = sectionsOfDays[section][row]
+        return ForecastWeatherCellViewModel(weather: weather)
+    }
  }

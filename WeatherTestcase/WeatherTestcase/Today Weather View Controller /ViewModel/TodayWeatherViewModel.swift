@@ -9,14 +9,26 @@
 import UIKit.UIImage
 import CoreLocation
 
-class TodayWeatherViewModel {
+protocol TodayWeatherViewModelType {
     
-    var networkService: NetworkService
-    var vc: TodayWeatherViewController!
+    init(downloader: WeatherDownloader)
     
-    init(networkService: NetworkService) {
-        self.networkService = networkService
-        vc = TodayWeatherViewController(viewModel: self)
+    var temperatureAndWeatherState: String { get }
+    var humidity: String { get }
+    var precipitation: String { get }
+    var pressure: String { get }
+    var windSpeed: String { get }
+    var compass: String { get }
+    var weatherStateImageView: UIImage { get }
+    
+}
+
+class TodayWeatherViewModel: TodayWeatherViewModelType {
+    
+    private var downloader: WeatherDownloader
+    
+    required init(downloader: WeatherDownloader) {
+        self.downloader = downloader
     }
     
     var temperatureAndWeatherState: String {

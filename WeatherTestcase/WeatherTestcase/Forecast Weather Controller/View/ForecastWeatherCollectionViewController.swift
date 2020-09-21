@@ -9,9 +9,9 @@
 import UIKit
 import CoreLocation
 
-extension ForecastWeatherCollectionViewController {
-    static let cellId = "cell"
-    static let headerId = "header"
+enum Idenifiers: String {
+    case cellId
+    case headerId
 }
 
 class ForecastWeatherCollectionViewController: UICollectionViewController {
@@ -23,15 +23,15 @@ class ForecastWeatherCollectionViewController: UICollectionViewController {
         return imageView
     }()
     
-    var forecastViewModel: ForecastWeatherViewModel?
+    var forecastViewModel: ForecastWeatherViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUnderNavBarColoringLine()
         collectionView.backgroundColor = .white
-        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastWeatherCollectionViewController.cellId)
-        collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId)
+        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: Idenifiers.cellId.rawValue)
+        collectionView.register(DayHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Idenifiers.headerId.rawValue)
     }
     
     override func viewWillAppear(_ animated: Bool) {

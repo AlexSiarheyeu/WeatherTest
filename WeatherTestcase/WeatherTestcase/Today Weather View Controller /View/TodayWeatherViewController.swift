@@ -13,7 +13,7 @@ class TodayWeatherViewController: UIViewController {
     
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
-    var todayWeatherViewModel: TodayWeatherViewModel?
+    var todayWeatherViewModel: TodayWeatherViewModelType?
     
     var startLocation = CLLocation() {
         didSet {
@@ -22,14 +22,14 @@ class TodayWeatherViewController: UIViewController {
         }
     }
     
-    init(viewModel: TodayWeatherViewModel) {
+    init(viewModel: TodayWeatherViewModelType) {
         self.todayWeatherViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupActiveNotification()
+        
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -102,18 +102,6 @@ class TodayWeatherViewController: UIViewController {
             })
         })
      }
-    
-    private func setupActiveNotification() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(TodayWeatherViewController.applicationDidBecomeActive(notification:)),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
-    }
-    
-    @objc func applicationDidBecomeActive(notification: Notification) {
-        getCurrentLocation()
-    }
     
     func getCurrentLocation() {
               

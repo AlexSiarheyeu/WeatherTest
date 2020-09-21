@@ -11,29 +11,32 @@ import UIKit
 extension ForecastWeatherCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return forecastViewModel?.sectionsOfDays.count ?? 0
+        return forecastViewModel?.numberOfSections ?? 0
         
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecastViewModel?.sectionsOfDays[section].count ?? 0
+        return forecastViewModel?.numberOfItems ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastWeatherCollectionViewController.cellId, for: indexPath) as! ForecastCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Idenifiers.cellId.rawValue, for: indexPath) as! ForecastCollectionViewCell
+        guard let viewModel = forecastViewModel else {return UICollectionViewCell()}
+        let cellViewModel = viewModel.configureCell(indexPath.section, indexPath.row)
+        cell.viewModel = cellViewModel
         
-        if let viewModel = forecastViewModel {
-            cell.configure(viewModel: viewModel, indexPath.section, indexPath.row)
-        }
-       
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ForecastWeatherCollectionViewController.headerId, for: indexPath) as! DayHeaderView
-        header.dayLabel.text = forecastViewModel?.week(for: indexPath.section)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Idenifiers.headerId.rawValue, for: indexPath) as! DayHeaderView
+        guard let viewModel = forecastViewModel else {return UICollectionViewCell()}
+
+        let cellViewModel = viewModel.configureCell(indexPath.section, indexPath.row)
+        header.viewModel = cellViewModel
+        
         return header
      }
     

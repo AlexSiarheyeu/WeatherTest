@@ -17,7 +17,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    let weatherStateImageView: UIImageView = {
+    let weatherConditionImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "sun")
@@ -31,7 +31,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let weatherStateLabel: UILabel = {
+    let weatherConditionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,38 +46,36 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+     weak var viewModel: ForecastWeatherCellViewModelType? {
+        didSet {
+            weatherConditionImage.image = viewModel?.getWeatherConditionImage()
+            timeLabel.text = viewModel?.getCurrentDate()
+            weatherConditionLabel.text = viewModel?.getWeatherCondition()
+            temperatureLabel.text = viewModel?.getTemperature()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let views = [weatherStateLabel, weatherStateImageView, timeLabel, temperatureLabel, separatorView]
-        
+        let views = [weatherConditionLabel, weatherConditionImage, timeLabel, temperatureLabel, separatorView]
         views.forEach { addSubview($0) }
-        
         activatingConstraintsForInputViews()
-        
-    }
-    
-    func configure(viewModel: ForecastWeatherViewModel, _ section: Int, _ row: Int) {
-        
-        timeLabel.text = viewModel.getTime(section, row)
-        temperatureLabel.text = viewModel.temperature(section, row)
-        weatherStateLabel.text = viewModel.weatherState(section, row)
-        weatherStateImageView.image = viewModel.getWeatherStateImage(section, row)
     }
     
     private func activatingConstraintsForInputViews() {
         
         NSLayoutConstraint.activate([
-            weatherStateImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            weatherStateImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            weatherStateImageView.heightAnchor.constraint(equalToConstant: 50),
-            weatherStateImageView.widthAnchor.constraint(equalToConstant: 50),
+            weatherConditionImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            weatherConditionImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            weatherConditionImage.heightAnchor.constraint(equalToConstant: 50),
+            weatherConditionImage.widthAnchor.constraint(equalToConstant: 50),
 
-            timeLabel.leadingAnchor.constraint(equalTo: weatherStateImageView.trailingAnchor, constant: 15),
-            timeLabel.topAnchor.constraint(equalTo: weatherStateImageView.topAnchor),
+            timeLabel.leadingAnchor.constraint(equalTo: weatherConditionImage.trailingAnchor, constant: 15),
+            timeLabel.topAnchor.constraint(equalTo: weatherConditionImage.topAnchor),
             
-            weatherStateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
-            weatherStateLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor),
+            weatherConditionLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            weatherConditionLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor),
             
             temperatureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             temperatureLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
