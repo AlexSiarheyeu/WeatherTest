@@ -9,10 +9,10 @@
 import Foundation
 
 protocol ForecastWeatherViewModelType {
-    
-    var numberOfItems: Int { get }
-    var numberOfSections: Int { get }
+   
     func configureCell(_ section: Int, _ row: Int) -> ForecastWeatherCellViewModel?
+    func numberOfItems(_ section: Int) -> Int
+    var numberOfSections: Int { get }
 }
 
 class ForecastWeatherViewModel: ForecastWeatherViewModelType {
@@ -24,17 +24,18 @@ class ForecastWeatherViewModel: ForecastWeatherViewModelType {
         sectionsOfDays.count
     }
     
-    var numberOfItems: Int {
-        sectionsOfDays[0].count
+    func numberOfItems(_ section: Int) -> Int {
+        return sectionsOfDays[section].count
     }
     
-     lazy var sectionsOfDays = [
+    private lazy var sectionsOfDays = [
         [forecast.weather?.daily[currentDayIndex(0)]],
         [forecast.weather?.daily[currentDayIndex(1)]],
         [forecast.weather?.daily[currentDayIndex(2)]],
         [forecast.weather?.daily[currentDayIndex(3)]],
         [forecast.weather?.daily[currentDayIndex(4)]]
         ]
+    
     
     func configureCell(_ section: Int, _ row: Int) -> ForecastWeatherCellViewModel? {
         let weather = sectionsOfDays[section][row]

@@ -13,7 +13,7 @@ class TodayWeatherViewController: UIViewController {
     
     var todayWeatherView: TodayWeatherView!
     var locationManager: CLLocationManager?
-    var todayWeatherViewModel: TodayWeatherViewModelType?
+    private var todayWeatherViewModel: TodayWeatherViewModelType?
     
     var startLocation = CLLocation() {
         didSet {
@@ -29,7 +29,9 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        defineCurrentCity()
+//        presentWeatherOfCurrentLocation()
+
         setupInternalViewForMainView()
         getCurrentLocation()
         self.todayWeatherView.shareButton.addTarget(self, action: #selector(handleShareButton), for: .touchUpInside)
@@ -49,6 +51,16 @@ class TodayWeatherViewController: UIViewController {
         forecatVC.navigationController?.navigationBar.topItem?.title = self.todayWeatherView.cityAndCountryLabel.text
     }
     
+    @objc func handleShareButton() {
+           
+           guard let text = self.todayWeatherViewModel?.temperatureAndWeatherState else {return}
+              
+           let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+           
+           activityViewController.popoverPresentationController?.sourceView = self.view
+
+           self.present(activityViewController, animated: true, completion: nil)
+       }
     
      private func setupInternalViewForMainView() {
 
@@ -68,7 +80,7 @@ class TodayWeatherViewController: UIViewController {
         let lat = startLocation.coordinate.latitude
         let lon = startLocation.coordinate.longitude
         
-        WeatherDownloader.getWeatherAt(lat: lat, lon: lon, completion: {
+        WeatherDownloader.downloadWeatherInformation(lat: lat, lon: lon, completion: {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
                 

@@ -14,10 +14,10 @@ struct WeatherSaver {
 
 class WeatherDownloader {
     
-    class func getWeatherAt(lat: Double, lon: Double, completion: @escaping ()->()) {
-       
-    NetworkService.shared.getWeather(lat: lat, lon: lon) { (result) in
-       
+    class func downloadWeatherInformation(lat: Double, lon: Double, completion: @escaping ()->()) {
+        
+        NetworkService.shared.getWeatherAt(latitude: lat, longitude: lon) { (result) in
+
         switch result {
         case .success(let weather):
             WeatherSaver.weather = weather
@@ -27,4 +27,5 @@ class WeatherDownloader {
         }
     }
   }
+
 }

@@ -29,28 +29,43 @@ class NetworkService {
         let oneCallAPI = "/onecall?lat=\(latitude)" + "&lon=\(longitude)" + "&exclude=minutely" + "&appid=" + API.apiKey
         return API.basicURL + oneCallAPI
     }
+    
+    func getWeatherAt(latitude: Double, longitude: Double, completion: @escaping (Result<ResultWeather, DataManagerError>) -> ()) {
 
-    func getWeather(lat: Double, lon: Double, completion: @escaping (Result<ResultWeather, DataManagerError>) -> ()) {
+        self.locationURLRequestWith(latitude: latitude, longitude: longitude) { (data, error) in
+          
+           if let _ = error {
+               completion(.failure(.failedRequest))
+               return
+           }
+            
+            guard let decodeObject = self.genericJSONDecoder(type: ResultWeather.self, data: data) else {return}
+            completion(.success(decodeObject))
+        }
+    }
+    
+    private func genericJSONDecoder<T: Decodable>(type: T.Type, data: Data?) -> T? {
         
-        guard let url = URL(string: getURL(latitude: lat, longitude: lon)) else { return }
+        let decoder = JSONDecoder()
         
+        guard let data = data else  {return nil}
+        do {
+            let object = try decoder.decode(type.self, from: data)
+            return object
+        } catch let error {
+            print("Failed to  decode JSON", error.localizedDescription)
+            return nil
+        }
+    }
+    
+     private func locationURLRequestWith(latitude: Double, longitude: Double, completion: @escaping (Data?, Error?) -> ()) {
+        
+        guard let url = URL(string: getURL(latitude: latitude, longitude: longitude)) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let _ = error {
-                completion(.failure(.failedRequest))
-                return
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let weatherObject = try JSONDecoder().decode(ResultWeather.self, from: data)
-                completion(.success(weatherObject))
-            } catch {
-                completion(.failure(.invalidResponse))
-            }
-            completion(.failure(.unknown))
-            
+            completion(data, error)
+          
         }.resume()
     }
+
 }
+
